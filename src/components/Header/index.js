@@ -69,13 +69,6 @@ const Header = props => (
               {isDarkTheme ? <FiSun size={25} /> : <BsMoon size={25} />}
             </DarkModeButton>
 
-            <HamburgerMenuButton
-              type="button"
-              onClick={onClickMenuButton}
-              isDarkTheme={isDarkTheme}
-            >
-              <FiMenu size={25} />
-            </HamburgerMenuButton>
             <Popup
               modal
               trigger={

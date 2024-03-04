@@ -5,7 +5,7 @@ export const MainContainer = styled.div`
   justify-content: space-between;
 `
 
-export const HomeContainer = styled.div`
+export const HomeMainContainer = styled.div`
   display: flex;
   flex-direction: column;
   background-color: ${props => (props.isDarkTheme ? '#181818' : '#ffffff')};
@@ -80,4 +80,12 @@ export const LoadingContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  min-height: 70vh;
+  background-color: ${props => (props.isDarkTheme ? '#181818' : '#F9F9F9')};
+`
+
+export const VideoListContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 `
