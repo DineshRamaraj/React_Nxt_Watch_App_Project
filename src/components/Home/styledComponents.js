@@ -9,24 +9,35 @@ export const HomeMainContainer = styled.div`
   display: flex;
   flex-direction: column;
   background-color: ${props => (props.isDarkTheme ? '#181818' : '#ffffff')};
-  min-height: 100vh;
+  height: 90vh;
+  max-height: 100vh;
   width: 100%;
   padding: 20px;
+  overflow-y: auto;
 `
 
 export const SearchContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  min-width: 400px;
-  max-width: 60%;
   border: 1px solid #424242;
   height: 40px;
   border-radius: 5px;
+  max-width: 100%;
+  @media screen and (min-width: 576px) {
+    min-width: 400px;
+    max-width: 70%;
+  }
+  @media screen and (min-width: 768px) {
+    max-width: 60%;
+  }
+  @media screen and (min-width: 900px) {
+    max-width: 50%;
+  }
 `
 
 export const SearchInput = styled.input`
-  padding: 5px 25px;
+  padding: 10px 25px;
   background-color: transparent;
   width: 80%;
   border: none;
@@ -87,5 +98,8 @@ export const LoadingContainer = styled.div`
 export const VideoListContainer = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   flex-wrap: wrap;
+  min-height: 100vh;
+  margin-top: 20px;
 `

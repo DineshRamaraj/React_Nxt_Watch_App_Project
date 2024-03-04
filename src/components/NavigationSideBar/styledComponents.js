@@ -10,8 +10,9 @@ export const NavigationContainer = styled.nav`
     padding: 20px 0px 0px 10px;
     background-color: ${props => (props.isDarkTheme ? '#000000' : '#ffffff')};
     min-width: 250px;
-    max-width: 22%;
-    height: 100vh;
+    max-width: 20%;
+    height: 90vh;
+    max-height: 100vh;
   }
 `
 
