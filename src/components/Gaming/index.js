@@ -1,17 +1,11 @@
 import Cookies from 'js-cookie'
-import Loader from 'react-loader-spinner'
 import {Component} from 'react'
-
 import ContextComponent from '../../Context'
 import GamingItem from '../GamingItem'
 import FailureView from '../FailureView'
-import NoSearchResult from '../NoSearchResult'
+import LoadingView from '../Loading'
 
-import {
-  GamingContainer,
-  LoadingContainer,
-  GamingListContainer,
-} from './styledComponents'
+import {GamingContainer, GamingListContainer} from './styledComponents'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -63,41 +57,22 @@ class Gaming extends Component {
     }
   }
 
-  renderFailureView = () => <FailureView />
+  renderLoadingView = () => <LoadingView />
 
-  renderLoadingView = () => (
-    <ContextComponent.Consumer>
-      {value => {
-        const {isDarkTheme} = value
-        return (
-          <LoadingContainer isDarkTheme={isDarkTheme} data-testid="loader">
-            <Loader
-              type="ThreeDots"
-              color={isDarkTheme ? '#ffffff' : '#000000'}
-              height="50"
-              width="50"
-            />
-          </LoadingContainer>
-        )
-      }}
-    </ContextComponent.Consumer>
-  )
+  renderFailureView = () => <FailureView />
 
   renderSuccessView = () => (
     <ContextComponent.Consumer>
       {value => {
         const {gamingList} = this.state
         const {isDarkTheme} = value
-        if (gamingList.length) {
-          return (
-            <GamingListContainer isDarkTheme={isDarkTheme}>
-              {gamingList.map(eachItem => (
-                <GamingItem key={eachItem.id} gameItem={eachItem} />
-              ))}
-            </GamingListContainer>
-          )
-        }
-        return <NoSearchResult />
+        return (
+          <GamingListContainer isDarkTheme={isDarkTheme}>
+            {gamingList.map(eachItem => (
+              <GamingItem key={eachItem.id} gameItem={eachItem} />
+            ))}
+          </GamingListContainer>
+        )
       }}
     </ContextComponent.Consumer>
   )
@@ -123,7 +98,7 @@ class Gaming extends Component {
           {value => {
             const {isDarkTheme} = value
             return (
-              <GamingContainer isDarkTheme={isDarkTheme}>
+              <GamingContainer isDarkTheme={isDarkTheme} data-testid="gaming">
                 {this.renderMainViews()}
               </GamingContainer>
             )

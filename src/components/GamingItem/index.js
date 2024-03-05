@@ -1,3 +1,5 @@
+import ContextComponent from '../../Context'
+
 import {
   GamingItemContainer,
   GameLink,
@@ -10,13 +12,22 @@ const GamingItem = props => {
   const {gameItem} = props
   const {id, title, thumbnailUrl, viewCount} = gameItem
   return (
-    <GamingItemContainer>
-      <GameLink to={`/gaming/${id}`}>
-        <GameImage src={thumbnailUrl} alt={title} />
-      </GameLink>
-      <GameTitle>{title}</GameTitle>
-      <GameViewCount>{viewCount} Watching Worldwide</GameViewCount>
-    </GamingItemContainer>
+    <ContextComponent.Consumer>
+      {value => {
+        const {isDarkTheme} = value
+        return (
+          <GamingItemContainer>
+            <GameLink to={`/gaming/${id}`}>
+              <GameImage src={thumbnailUrl} alt={title} />
+            </GameLink>
+            <GameTitle isDarkTheme={isDarkTheme}>{title}</GameTitle>
+            <GameViewCount isDarkTheme={isDarkTheme}>
+              {viewCount} Watching Worldwide
+            </GameViewCount>
+          </GamingItemContainer>
+        )
+      }}
+    </ContextComponent.Consumer>
   )
 }
 

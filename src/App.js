@@ -5,6 +5,7 @@ import Login from './components/LoginForm'
 import Home from './components/Home'
 import Trending from './components/Trending'
 import Gaming from './components/Gaming'
+import VideoItemDetails from './components/VideoItemDetails'
 import ContextComponents from './Context'
 import './App.css'
 
@@ -19,10 +20,6 @@ class App extends Component {
   }
 
   changeActiveTabId = () => {
-    const {match} = this.props
-    const {params} = match
-    console.log(params.id)
-
     // this.setState({activeTabId: })
   }
 
@@ -42,6 +39,7 @@ class App extends Component {
           <ProtectedRoute exact path="/" component={Home} />
           <ProtectedRoute exact path="/trending" component={Trending} />
           <ProtectedRoute exact path="/gaming" component={Gaming} />
+          <ProtectedRoute path="/videos/:id" component={VideoItemDetails} />
         </Switch>
       </ContextComponents.Provider>
     )

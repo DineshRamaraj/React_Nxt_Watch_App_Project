@@ -1,17 +1,12 @@
 import Cookies from 'js-cookie'
-import Loader from 'react-loader-spinner'
 import {Component} from 'react'
 
 import ContextComponent from '../../Context'
 import TrendingVideoItem from '../TrendingVideoItem'
 import FailureView from '../FailureView'
-import NoSearchResult from '../NoSearchResult'
+import LoadingView from '../Loading'
 
-import {
-  TrendingContainer,
-  LoadingContainer,
-  VideoListContainer,
-} from './styledComponents'
+import {TrendingContainer, VideoListContainer} from './styledComponents'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -68,41 +63,22 @@ class Trending extends Component {
     }
   }
 
-  renderFailureView = () => <FailureView />
+  renderLoadingView = () => <LoadingView />
 
-  renderLoadingView = () => (
-    <ContextComponent.Consumer>
-      {value => {
-        const {isDarkTheme} = value
-        return (
-          <LoadingContainer isDarkTheme={isDarkTheme} data-testid="loader">
-            <Loader
-              type="ThreeDots"
-              color={isDarkTheme ? '#ffffff' : '#000000'}
-              height="50"
-              width="50"
-            />
-          </LoadingContainer>
-        )
-      }}
-    </ContextComponent.Consumer>
-  )
+  renderFailureView = () => <FailureView />
 
   renderSuccessView = () => (
     <ContextComponent.Consumer>
       {value => {
         const {trendingList} = this.state
         const {isDarkTheme} = value
-        if (trendingList.length) {
-          return (
-            <VideoListContainer isDarkTheme={isDarkTheme}>
-              {trendingList.map(eachItem => (
-                <TrendingVideoItem key={eachItem.id} videoDetails={eachItem} />
-              ))}
-            </VideoListContainer>
-          )
-        }
-        return <NoSearchResult />
+        return (
+          <VideoListContainer isDarkTheme={isDarkTheme}>
+            {trendingList.map(eachItem => (
+              <TrendingVideoItem key={eachItem.id} videoDetails={eachItem} />
+            ))}
+          </VideoListContainer>
+        )
       }}
     </ContextComponent.Consumer>
   )
@@ -128,7 +104,10 @@ class Trending extends Component {
           {value => {
             const {isDarkTheme} = value
             return (
-              <TrendingContainer isDarkTheme={isDarkTheme}>
+              <TrendingContainer
+                isDarkTheme={isDarkTheme}
+                data-testid="trending"
+              >
                 {this.renderMainViews()}
               </TrendingContainer>
             )

@@ -74,8 +74,8 @@ export const ChannelAndViewAndDuration = styled.div`
 export const VideoChannel = styled.p`
   font-family: 'Roboto';
   font-size: 14px;
-  font-weight: ${props => (props.isDarkTheme ? '500' : '400')};
-  color: #455568;
+  font-weight: ${props => (props.isDarkTheme ? '700' : '500')};
+  color: #3a6789;
   margin-top: 10px;
   margin-bottom: 5px;
 `
@@ -90,7 +90,7 @@ export const VideoView = styled.p`
   font-family: 'Roboto';
   font-size: 12px;
   font-weight: ${props => (props.isDarkTheme ? '500' : '400')};
-  color: #455568;
+  color: #3a6789;
   list-style: disc inside;
   display: list-item;
   margin-left: 5px;
@@ -106,7 +106,7 @@ export const VideoDuration = styled.p`
   font-family: 'Roboto';
   font-size: 12px;
   font-weight: ${props => (props.isDarkTheme ? '500' : '400')};
-  color: #455568;
+  color: #3a6789;
   margin-left: 10px;
   margin-top: 5px;
   list-style: disc inside;

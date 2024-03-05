@@ -1,19 +1,18 @@
 import Cookies from 'js-cookie'
 import {IoIosSearch} from 'react-icons/io'
-import Loader from 'react-loader-spinner'
 import {Component} from 'react'
 
 import ContextComponent from '../../Context'
 import VideoItem from '../VideoItem'
 import FailureView from '../FailureView'
 import NoSearchResult from '../NoSearchResult'
+import LoadingView from '../Loading'
 
 import {
   HomeContainer,
   SearchContainer,
   SearchInput,
   SearchIcon,
-  LoadingContainer,
   VideoListContainer,
 } from './styledComponents'
 
@@ -73,25 +72,9 @@ class Home extends Component {
     }
   }
 
-  renderFailureView = () => <FailureView />
+  renderLoadingView = () => <LoadingView />
 
-  renderLoadingView = () => (
-    <ContextComponent.Consumer>
-      {value => {
-        const {isDarkTheme} = value
-        return (
-          <LoadingContainer isDarkTheme={isDarkTheme} data-testid="loader">
-            <Loader
-              type="ThreeDots"
-              color={isDarkTheme ? '#ffffff' : '#000000'}
-              height="50"
-              width="50"
-            />
-          </LoadingContainer>
-        )
-      }}
-    </ContextComponent.Consumer>
-  )
+  renderFailureView = () => <FailureView />
 
   renderSuccessView = () => (
     <ContextComponent.Consumer>
@@ -141,7 +124,7 @@ class Home extends Component {
           const {isDarkTheme} = value
           const {searchInput} = this.state
           return (
-            <HomeContainer isDarkTheme={isDarkTheme}>
+            <HomeContainer isDarkTheme={isDarkTheme} data-testid="home">
               {/* <PremiumBanner /> */}
               <SearchContainer>
                 <SearchInput
