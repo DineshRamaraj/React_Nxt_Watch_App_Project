@@ -169,8 +169,8 @@ class Home extends Component {
   )
 
   render() {
-    const {videoList} = this.state
-    console.log(videoList)
+    // const {videoList} = this.state
+    // console.log(videoList)
     return (
       <>
         <Header />
