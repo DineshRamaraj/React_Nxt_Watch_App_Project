@@ -14,19 +14,14 @@ const NoSearchResult = () => (
       return (
         <NoSearchContainer>
           <NoSearchImage
-            src={
-              isDarkTheme
-                ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png'
-                : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png'
-            }
-            alt="failure"
+            src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png"
+            alt="no videos"
           />
           <NoSearchHeading isDarkTheme={isDarkTheme}>
-            Oops! Something Went Wrong
+            No Search results found
           </NoSearchHeading>
           <NoSearchDescription isDarkTheme={isDarkTheme}>
-            We are having some trouble to complete your request. Please try
-            again
+            Try different key words or remove search filter
           </NoSearchDescription>
           <NoSearchRetryButton type="button">Retry</NoSearchRetryButton>
         </NoSearchContainer>

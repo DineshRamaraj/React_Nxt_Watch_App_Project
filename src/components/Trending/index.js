@@ -1,18 +1,14 @@
 import Cookies from 'js-cookie'
-import {IoIosSearch} from 'react-icons/io'
 import Loader from 'react-loader-spinner'
 import {Component} from 'react'
 
 import ContextComponent from '../../Context'
-import VideoItem from '../VideoItem'
+import TrendingVideoItem from '../TrendingVideoItem'
 import FailureView from '../FailureView'
 import NoSearchResult from '../NoSearchResult'
 
 import {
-  HomeContainer,
-  SearchContainer,
-  SearchInput,
-  SearchIcon,
+  TrendingContainer,
   LoadingContainer,
   VideoListContainer,
 } from './styledComponents'
@@ -24,15 +20,14 @@ const apiStatusConstants = {
   inProgress: 'IN_PROGRESS',
 }
 
-class Home extends Component {
+class Trending extends Component {
   state = {
-    videoList: [],
-    searchInput: '',
+    trendingList: [],
     apiStatus: apiStatusConstants.initial,
   }
 
   componentDidMount() {
-    this.getVideoListData()
+    this.getTrendingList()
   }
 
   convertResponseDataIntoMyData = data => ({
@@ -47,11 +42,10 @@ class Home extends Component {
     },
   })
 
-  getVideoListData = async () => {
+  getTrendingList = async () => {
     this.setState({apiStatus: apiStatusConstants.inProgress})
-    const {searchInput} = this.state
     const jwtToken = Cookies.get('jwt_token')
-    const apiUrl = `https://apis.ccbp.in/videos/all?search=${searchInput}`
+    const apiUrl = `https://apis.ccbp.in/videos/trending`
     const options = {
       headers: {
         Authorization: `Bearer ${jwtToken}`,
@@ -64,8 +58,9 @@ class Home extends Component {
       const updatedData = data.videos.map(eachItem =>
         this.convertResponseDataIntoMyData(eachItem),
       )
+      console.log(updatedData)
       this.setState({
-        videoList: updatedData,
+        trendingList: updatedData,
         apiStatus: apiStatusConstants.success,
       })
     } else {
@@ -96,13 +91,13 @@ class Home extends Component {
   renderSuccessView = () => (
     <ContextComponent.Consumer>
       {value => {
-        const {videoList} = this.state
+        const {trendingList} = this.state
         const {isDarkTheme} = value
-        if (videoList.length) {
+        if (trendingList.length) {
           return (
             <VideoListContainer isDarkTheme={isDarkTheme}>
-              {videoList.map(eachItem => (
-                <VideoItem key={eachItem.id} videoDetails={eachItem} />
+              {trendingList.map(eachItem => (
+                <TrendingVideoItem key={eachItem.id} videoDetails={eachItem} />
               ))}
             </VideoListContainer>
           )
@@ -126,50 +121,22 @@ class Home extends Component {
     }
   }
 
-  changeSearchInput = event => {
-    this.setState({searchInput: event.target.value})
-  }
-
-  clickSearch = () => {
-    this.getVideoListData()
-  }
-
   render() {
     return (
-      <ContextComponent.Consumer>
-        {value => {
-          const {isDarkTheme} = value
-          const {searchInput} = this.state
-          return (
-            <HomeContainer isDarkTheme={isDarkTheme}>
-              {/* <PremiumBanner /> */}
-              <SearchContainer>
-                <SearchInput
-                  id="search"
-                  type="search"
-                  placeholder="Search"
-                  isDarkTheme={isDarkTheme}
-                  value={searchInput}
-                  onChange={this.changeSearchInput}
-                />
-                <SearchIcon
-                  type="button"
-                  isDarkTheme={isDarkTheme}
-                  onClick={this.clickSearch}
-                >
-                  <IoIosSearch
-                    size={22}
-                    color={isDarkTheme ? '#909090' : '#000000'}
-                  />
-                </SearchIcon>
-              </SearchContainer>
-              {this.renderMainViews()}
-            </HomeContainer>
-          )
-        }}
-      </ContextComponent.Consumer>
+      <>
+        <ContextComponent.Consumer>
+          {value => {
+            const {isDarkTheme} = value
+            return (
+              <TrendingContainer isDarkTheme={isDarkTheme}>
+                {this.renderMainViews()}
+              </TrendingContainer>
+            )
+          }}
+        </ContextComponent.Consumer>
+      </>
     )
   }
 }
 
-export default Home
+export default Trending

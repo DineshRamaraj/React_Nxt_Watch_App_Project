@@ -1,11 +1,6 @@
 import styled from 'styled-components'
 
-export const MainContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-`
-
-export const HomeMainContainer = styled.div`
+export const HomeContainer = styled.div`
   display: flex;
   flex-direction: column;
   background-color: ${props => (props.isDarkTheme ? '#181818' : '#ffffff')};

@@ -3,35 +3,38 @@ import {Link} from 'react-router-dom'
 
 export const VideoItemContainer = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   width: 100%;
   margin-bottom: 30px;
   @media screen and (min-width: 576px) {
-    width: 50%;
-    padding: 0px 10px 10px 0px;
-  }
-  @media screen and (min-width: 768px) {
-    width: 50%;
-  }
-  @media screen and (min-width: 1000px) {
-    width: 33%;
+    flex-direction: row;
+    width: 100%;
   }
 `
 
 export const VideoLink = styled(Link)`
   text-decoration: none;
   cursor: pointer;
+  width: 100%;
+  @media screen and (min-width: 576px) {
+    width: 55%;
+    max-width: 350px;
+  }
 `
 
 export const VideoImage = styled.img`
   width: 100%;
   border-radius: 4px;
-  //   height: auto;
+  height: auto;
 `
 
 export const ProfileAndContentContainer = styled.div`
   display: flex;
+  width: 100%;
+  @media screen and (min-width: 576px) {
+    width: 45%;
+  }
 `
 
 export const ProfileImage = styled.img`
@@ -39,6 +42,9 @@ export const ProfileImage = styled.img`
   height: 40px;
   align-self: flex-start;
   margin-top: 15px;
+  @media screen and (min-width: 576px) {
+    display: none;
+  }
 `
 
 export const VideoContentContainer = styled.div`
@@ -59,6 +65,14 @@ export const VideoTitle = styled.h1`
   line-height: 1.5;
   color: ${props => (props.isDarkTheme ? '#dbeff5' : '#242C43')};
   margin-bottom: 3px;
+
+  @media screen and (min-width: 576px) {
+    font-weight: 600;
+  }
+
+  @media screen and (min-width: 900px) {
+    font-size: 16px;
+  }
 `
 
 export const ChannelAndViewAndDuration = styled.div`

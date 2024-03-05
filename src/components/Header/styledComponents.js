@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom'
 import styled from 'styled-components'
 
 export const HeaderContainer = styled.div`
@@ -12,16 +13,14 @@ export const HeaderContainer = styled.div`
   }
 `
 
-export const LogoLink = styled.div`
-  width: 120px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
+export const LogoLink = styled(Link)`
+  text-decoration: none;
 `
 
 export const WebsiteLogo = styled.img`
-  width: 100%;
+  width: 120px;
+  height: 40px;
+  cursor: pointer;
 `
 
 export const SmNavbarContainer = styled.div`

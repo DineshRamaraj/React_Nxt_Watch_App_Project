@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import {Link} from 'react-router-dom'
 
 export const NavigationContainer = styled.nav`
   display: none;
@@ -19,7 +20,9 @@ export const NavBarContainer = styled.div`
   display: flex;
   flex-direction: column;
 `
-
+export const NavLink = styled(Link)`
+  text-decoration: none;
+`
 export const NavBarItem = styled.div`
   display: flex;
   flex-direction: row;

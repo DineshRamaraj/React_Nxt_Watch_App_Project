@@ -8,6 +8,7 @@ import ContextComponent from '../../Context'
 import {
   NavigationContainer,
   NavBarItem,
+  NavLink,
   NavItem,
   NavBarContainer,
   NavBarContactContainer,
@@ -41,62 +42,66 @@ const NavigationSideBar = () => (
       return (
         <NavigationContainer isDarkTheme={isDarkTheme}>
           <NavBarContainer>
-            <NavBarItem
-              to="/"
-              isActive={activeTabId === 'home'}
-              isDarkTheme={isDarkTheme}
-              onClick={onClickHome}
-            >
-              <AiFillHome size={25} />
-              <NavItem
+            <NavLink to="/">
+              <NavBarItem
                 isActive={activeTabId === 'home'}
                 isDarkTheme={isDarkTheme}
+                onClick={onClickHome}
               >
-                Home
-              </NavItem>
-            </NavBarItem>
-            <NavBarItem
-              to="/trending"
-              isActive={activeTabId === 'trending'}
-              onClick={onClickTrending}
-              isDarkTheme={isDarkTheme}
-            >
-              <HiFire size={25} />
-              <NavItem
+                <AiFillHome size={25} />
+                <NavItem
+                  isActive={activeTabId === 'home'}
+                  isDarkTheme={isDarkTheme}
+                >
+                  Home
+                </NavItem>
+              </NavBarItem>
+            </NavLink>
+            <NavLink to="/trending">
+              <NavBarItem
                 isActive={activeTabId === 'trending'}
+                onClick={onClickTrending}
                 isDarkTheme={isDarkTheme}
               >
-                Trending
-              </NavItem>
-            </NavBarItem>
-            <NavBarItem
-              to="/gaming"
-              isActive={activeTabId === 'gaming'}
-              onClick={onClickGaming}
-              isDarkTheme={isDarkTheme}
-            >
-              <SiYoutubegaming size={25} />
-              <NavItem
+                <HiFire size={25} />
+                <NavItem
+                  isActive={activeTabId === 'trending'}
+                  isDarkTheme={isDarkTheme}
+                >
+                  Trending
+                </NavItem>
+              </NavBarItem>
+            </NavLink>
+            <NavLink to="/gaming">
+              <NavBarItem
                 isActive={activeTabId === 'gaming'}
+                onClick={onClickGaming}
                 isDarkTheme={isDarkTheme}
               >
-                Gaming
-              </NavItem>
-            </NavBarItem>
-            <NavBarItem
-              to="/saved"
-              isActive={activeTabId === 'saved'}
-              onClick={onClickSaved}
-              isDarkTheme={isDarkTheme}
-            >
-              <MdPlaylistAdd size={25} />
-              <NavItem
+                <SiYoutubegaming size={25} />
+                <NavItem
+                  isActive={activeTabId === 'gaming'}
+                  isDarkTheme={isDarkTheme}
+                >
+                  Gaming
+                </NavItem>
+              </NavBarItem>
+            </NavLink>
+            <NavLink to="/saved">
+              <NavBarItem
                 isActive={activeTabId === 'saved'}
+                onClick={onClickSaved}
                 isDarkTheme={isDarkTheme}
               >
-                Saved Videos
-              </NavItem>
-            </NavBarItem>
+                <MdPlaylistAdd size={25} />
+                <NavItem
+                  isActive={activeTabId === 'saved'}
+                  isDarkTheme={isDarkTheme}
+                >
+                  Saved Videos
+                </NavItem>
+              </NavBarItem>
+            </NavLink>
           </NavBarContainer>
           <NavBarContactContainer>
             <NavContactHeading isDarkTheme={isDarkTheme}>

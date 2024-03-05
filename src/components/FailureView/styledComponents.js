@@ -5,15 +5,24 @@ export const FailureContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  min-height: 70vh;
+  @media screen and (min-width: 768px) {
+    min-height: 100vh;
+  }
 `
 
 export const FailureImage = styled.img`
   width: 70%;
   @media screen and (min-width: 576px) {
-    width: 60%;
+    width: 50%;
+  }
+  @media screen and (min-width: 768px) {
+    width: 50%;
   }
   @media screen and (min-width: 900px) {
+    width: 60%;
+  }
+  @media screen and (min-width: 1000px) {
     width: 30%;
   }
 `
