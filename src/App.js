@@ -1,8 +1,10 @@
 import {Component} from 'react'
-import {Switch} from 'react-router-dom'
+import {Switch, Route, withRouter} from 'react-router-dom'
 import ProtectedRoute from './components/ProtectedRoute'
+import Login from './components/LoginForm'
 import Home from './components/Home'
 import Trending from './components/Trending'
+import Gaming from './components/Gaming'
 import ContextComponents from './Context'
 import './App.css'
 
@@ -16,8 +18,12 @@ class App extends Component {
     this.setState(prevState => ({isDarkTheme: !prevState.isDarkTheme}))
   }
 
-  changeActiveTabId = value => {
-    this.setState({activeTabId: value})
+  changeActiveTabId = () => {
+    const {match} = this.props
+    const {params} = match
+    console.log(params.id)
+
+    // this.setState({activeTabId: })
   }
 
   render() {
@@ -32,12 +38,14 @@ class App extends Component {
         }}
       >
         <Switch>
+          <Route exact path="=/login" component={Login} />
           <ProtectedRoute exact path="/" component={Home} />
           <ProtectedRoute exact path="/trending" component={Trending} />
+          <ProtectedRoute exact path="/gaming" component={Gaming} />
         </Switch>
       </ContextComponents.Provider>
     )
   }
 }
 
-export default App
+export default withRouter(App)

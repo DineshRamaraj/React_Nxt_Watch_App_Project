@@ -76,7 +76,8 @@ export const VideoChannel = styled.p`
   font-size: 14px;
   font-weight: ${props => (props.isDarkTheme ? '500' : '400')};
   color: #455568;
-  margin-top: 5px;
+  margin-top: 10px;
+  margin-bottom: 5px;
 `
 
 export const VideoViewsAndDuration = styled.div`
