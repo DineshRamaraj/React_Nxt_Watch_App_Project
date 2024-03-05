@@ -7,17 +7,15 @@ import ContextComponent from '../../Context'
 import Header from '../Header'
 import NavigationSideBar from '../NavigationSideBar'
 import VideoItem from '../VideoItem'
+import FailureView from '../FailureView'
+import NoSearchResult from '../NoSearchResult'
+
 import {
   MainContainer,
   HomeMainContainer,
   SearchContainer,
   SearchInput,
   SearchIcon,
-  FailureContainer,
-  FailureImage,
-  FailureHeading,
-  FailureDescription,
-  FailureRetryButton,
   LoadingContainer,
   VideoListContainer,
 } from './styledComponents'
@@ -45,7 +43,7 @@ class Home extends Component {
     publishedAt: data.published_at,
     thumbnailUrl: data.thumbnail_url,
     title: data.title,
-    viewCount: data.viewCount,
+    viewCount: data.view_count,
     channel: {
       name: data.channel.name,
       profileImageUrl: data.channel.profile_image_url,
@@ -78,19 +76,7 @@ class Home extends Component {
     }
   }
 
-  renderFailureView = () => (
-    <FailureContainer>
-      <FailureImage
-        src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png"
-        alt="failure"
-      />
-      <FailureHeading>Oops! Something Went Wrong</FailureHeading>
-      <FailureDescription>
-        We are having some trouble to complete your request. Please try again
-      </FailureDescription>
-      <FailureRetryButton>Retry</FailureRetryButton>
-    </FailureContainer>
-  )
+  renderFailureView = () => <FailureView />
 
   renderLoadingView = () => (
     <ContextComponent.Consumer>
@@ -115,14 +101,16 @@ class Home extends Component {
       {value => {
         const {videoList} = this.state
         const {isDarkTheme} = value
-        console.log(videoList)
-        return (
-          <VideoListContainer isDarkTheme={isDarkTheme}>
-            {videoList.map(eachItem => (
-              <VideoItem key={eachItem.id} videoDetails={eachItem} />
-            ))}
-          </VideoListContainer>
-        )
+        if (videoList.length) {
+          return (
+            <VideoListContainer isDarkTheme={isDarkTheme}>
+              {videoList.map(eachItem => (
+                <VideoItem key={eachItem.id} videoDetails={eachItem} />
+              ))}
+            </VideoListContainer>
+          )
+        }
+        return <NoSearchResult />
       }}
     </ContextComponent.Consumer>
   )
@@ -141,20 +129,36 @@ class Home extends Component {
     }
   }
 
+  changeSearchInput = event => {
+    this.setState({searchInput: event.target.value})
+  }
+
+  clickSearch = () => {
+    this.getVideoListData()
+  }
+
   renderHomeView = () => (
     <ContextComponent.Consumer>
       {value => {
         const {isDarkTheme} = value
+        const {searchInput} = this.state
         return (
           <HomeMainContainer isDarkTheme={isDarkTheme}>
             {/* <PremiumBanner /> */}
             <SearchContainer>
               <SearchInput
+                id="search"
                 type="search"
                 placeholder="Search"
                 isDarkTheme={isDarkTheme}
+                value={searchInput}
+                onChange={this.changeSearchInput}
               />
-              <SearchIcon isDarkTheme={isDarkTheme}>
+              <SearchIcon
+                type="button"
+                isDarkTheme={isDarkTheme}
+                onClick={this.clickSearch}
+              >
                 <IoIosSearch
                   size={22}
                   color={isDarkTheme ? '#909090' : '#000000'}

@@ -6,7 +6,7 @@ export const HeaderContainer = styled.div`
   align-items: center;
   height: 60px;
   padding: 0px 10px;
-  background-color: ${props => (props.isDarkTheme ? '#000000' : '#ffffff')};
+  background-color: ${props => (props.isDarkTheme ? '#212121' : '#ffffff')};
   @media screen and (min-width: 576px) {
     padding: 0px 40px;
   }

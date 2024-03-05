@@ -1,6 +1,8 @@
+import {formatDistanceToNow} from 'date-fns'
 import ContextComponent from '../../Context'
 import {
   VideoItemContainer,
+  VideoLink,
   VideoImage,
   ProfileAndContentContainer,
   ProfileImage,
@@ -12,12 +14,13 @@ import {
   VideoDuration,
 } from './styledComponents'
 
-const VideoItem = dinesh => (
+const VideoItem = props => (
   <ContextComponent.Consumer>
     {value => {
       const {isDarkTheme} = value
-      const {videoDetails} = dinesh
+      const {videoDetails} = props
       const {
+        id,
         channel,
         publishedAt,
         thumbnailUrl,
@@ -25,17 +28,27 @@ const VideoItem = dinesh => (
         viewCount,
       } = videoDetails
       const {name, profileImageUrl} = channel
+      const formatTime = formatDistanceToNow(new Date(publishedAt))
+        .split(' ')
+        .slice(1, 3)
+        .join(' ')
       return (
         <VideoItemContainer isDarkTheme={isDarkTheme}>
-          <VideoImage src={thumbnailUrl} alt={title} />
+          <VideoLink to={`/videos/${id}`}>
+            <VideoImage src={thumbnailUrl} alt={title} />
+          </VideoLink>
           <ProfileAndContentContainer>
             <ProfileImage src={profileImageUrl} alt={name} />
             <VideoContentContainer>
-              <VideoTitle>{title}</VideoTitle>
-              <VideoChannel>{name}</VideoChannel>
+              <VideoTitle isDarkTheme={isDarkTheme}>{title}</VideoTitle>
+              <VideoChannel isDarkTheme={isDarkTheme}>{name}</VideoChannel>
               <VideoViewsAndDuration>
-                <VideoView>{viewCount}</VideoView>
-                <VideoDuration>{publishedAt}</VideoDuration>
+                <VideoView isDarkTheme={isDarkTheme}>
+                  {viewCount} views
+                </VideoView>
+                <VideoDuration isDarkTheme={isDarkTheme}>
+                  {formatTime} ago
+                </VideoDuration>
               </VideoViewsAndDuration>
             </VideoContentContainer>
           </ProfileAndContentContainer>

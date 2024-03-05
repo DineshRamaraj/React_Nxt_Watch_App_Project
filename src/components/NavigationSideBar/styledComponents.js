@@ -7,11 +7,10 @@ export const NavigationContainer = styled.nav`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 20px 0px 0px 10px;
-    background-color: ${props => (props.isDarkTheme ? '#000000' : '#ffffff')};
+    padding-top: 20px;
+    background-color: ${props => (props.isDarkTheme ? '#212121' : '#ffffff')};
     min-width: 250px;
     max-width: 20%;
-    height: 90vh;
     max-height: 100vh;
   }
 `
@@ -28,17 +27,17 @@ export const NavBarItem = styled.div`
   padding: 0px 30px;
   background-color: ${props => {
     if (props.isDarkTheme && props.isActive) {
-      return '#313131'
+      return '#383838'
     }
     if (props.isDarkTheme && !props.isActive) {
       return 'transparent'
     }
     if (!props.isDarkTheme && props.isActive) {
-      return '#ebebeb'
+      return '#F1F5F9'
     }
     return 'transparent'
   }};
-  color: ${props => (props.isActive ? '#ff0b37' : '#7e858e')};
+  color: ${props => (props.isActive ? '#ff0b37' : '#606060')};
   cursor: pointer;
   &:hover {
     transform: ${props => (props.isActive ? 'scale(1)' : 'scale(1.1)')};
@@ -49,7 +48,7 @@ export const NavBarItem = styled.div`
 export const NavItem = styled.p`
   font-family: 'Roboto';
   font-size: ${props => (props.isActive ? '16px' : '15px')};
-  color: ${props => (props.isDarkTheme ? '#ffffff' : '#000000')};
+  color: ${props => (props.isDarkTheme ? '#ffffff' : '#1C293A')};
   margin-left: 20px;
   font-weight: ${props => (props.isActive ? 500 : 400)};
 `
@@ -58,6 +57,7 @@ export const NavBarContactContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px;
+  padding-bottom: 0px;
 `
 
 export const NavContactHeading = styled.h1`

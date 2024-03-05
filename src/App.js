@@ -7,7 +7,7 @@ import './App.css'
 
 class App extends Component {
   state = {
-    isDarkTheme: true,
+    isDarkTheme: false,
     activeTabId: 'home',
   }
 

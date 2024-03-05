@@ -37,7 +37,8 @@ export const SearchContainer = styled.div`
 `
 
 export const SearchInput = styled.input`
-  padding: 10px 25px;
+  padding: 10px;
+  padding-left: 25px;
   background-color: transparent;
   width: 80%;
   border: none;
@@ -60,33 +61,6 @@ export const SearchIcon = styled.div`
   border-radius: 0px 5px 5px 0px;
 `
 
-export const FailureContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`
-
-export const FailureImage = styled.img`
-  width: 40%;
-`
-
-export const FailureHeading = styled.h1`
-  font-family: 'Roboto';
-  font-size: 24px;
-  color: #1c293a;
-`
-
-export const FailureDescription = styled.p`
-  font-family: 'Roboto';
-  font-size: 14px;
-  color: #465568;
-`
-
-export const FailureRetryButton = styled.button`
-  font-size: 14px;
-  font-family: 'Roboto';
-`
-
 export const LoadingContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -98,8 +72,8 @@ export const LoadingContainer = styled.div`
 export const VideoListContainer = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-wrap: wrap;
-  min-height: 100vh;
+  min-height: 50vh;
   margin-top: 20px;
 `
