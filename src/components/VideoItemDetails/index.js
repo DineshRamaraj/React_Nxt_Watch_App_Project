@@ -19,6 +19,8 @@ import {
   VideoLikeAndSaveContainer,
   VideoLikeButton,
   VideoLikeItem,
+  VideoDisLikeItem,
+  VideoSaveItem,
   HrLine,
   ChannelProfileAndName,
   ChannelProfileImage,
@@ -94,9 +96,30 @@ class VideoItemDetails extends Component {
 
   renderLoadingView = () => <LoadingView />
 
+  onClickLikeButton = () => {
+    this.setState(prevState => ({
+      videoDetailsData: {
+        ...prevState.videoDetailsData,
+        isLiked: !prevState.videoDetailsData.isLiked,
+        isDisLiked: false,
+      },
+    }))
+  }
+
+  onClickDisLikeButton = () => {
+    this.setState(prevState => ({
+      videoDetailsData: {
+        ...prevState.videoDetailsData,
+        isLiked: false,
+        isDisLiked: !prevState.videoDetailsData.isDisLiked,
+      },
+    }))
+  }
+
   renderSuccessView = () => {
     const {videoDetailsData} = this.state
     const {
+      id,
       title,
       videoUrl,
       //   thumbnailUrl,
@@ -104,6 +127,8 @@ class VideoItemDetails extends Component {
       viewCount,
       publishedAt,
       description,
+      isLiked,
+      isDisLiked,
     } = videoDetailsData
     const {name, profileImageUrl, subscriberCount} = channel
 
@@ -115,14 +140,18 @@ class VideoItemDetails extends Component {
     return (
       <ContextComponent.Consumer>
         {value => {
-          const {isDarkTheme, addSavedVideoItem} = value
+          const {isDarkTheme, addSavedVideoItem, savedVideosList} = value
+
+          const isSaved = savedVideosList.find(eachItem => eachItem.id === id)
+
           const onClickSavedButton = () => {
             addSavedVideoItem(videoDetailsData)
           }
+
           return (
             <>
               <VideoContainer>
-                <ReactPlayer url={videoUrl} width="100%" />
+                <ReactPlayer url={videoUrl} width="100%" height="100%" />
               </VideoContainer>
               <VideoContentContainer>
                 <VideoTitle isDarkTheme={isDarkTheme}>{title}</VideoTitle>
@@ -136,23 +165,47 @@ class VideoItemDetails extends Component {
                     </VideoDuration>
                   </VideoViewsAndDuration>
                   <VideoLikeAndSaveContainer>
-                    <VideoLikeButton type="button">
-                      <BiLike size={20} color="#7E939F" />
-                      <VideoLikeItem isDarkTheme={isDarkTheme}>
+                    <VideoLikeButton
+                      type="button"
+                      onClick={this.onClickLikeButton}
+                    >
+                      <BiLike
+                        size={20}
+                        color={isLiked ? '#4f46e5' : '#7E939F'}
+                      />
+                      <VideoLikeItem
+                        isDarkTheme={isDarkTheme}
+                        isLiked={isLiked}
+                      >
                         Like
                       </VideoLikeItem>
                     </VideoLikeButton>
-                    <VideoLikeButton type="button">
-                      <BiDislike size={20} color="#7E939F" />
-                      <VideoLikeItem isDarkTheme={isDarkTheme}>
+                    <VideoLikeButton
+                      type="button"
+                      onClick={this.onClickDisLikeButton}
+                    >
+                      <BiDislike
+                        size={20}
+                        color={isDisLiked ? '#4f46e5' : '#7E939F'}
+                      />
+                      <VideoDisLikeItem
+                        isDarkTheme={isDarkTheme}
+                        isDisLiked={isDisLiked}
+                      >
                         Dislike
-                      </VideoLikeItem>
+                      </VideoDisLikeItem>
                     </VideoLikeButton>
                     <VideoLikeButton type="button" onClick={onClickSavedButton}>
-                      <MdPlaylistAdd size={20} color="#7E939F" />
-                      <VideoLikeItem isDarkTheme={isDarkTheme}>
-                        Save
-                      </VideoLikeItem>
+                      <MdPlaylistAdd
+                        size={20}
+                        color={isSaved ? '#4f46e5' : '#7E939F'}
+                      />
+                      <VideoSaveItem
+                        isDarkTheme={isDarkTheme}
+                        isSaved={isSaved}
+                      >
+                        {isSaved ? 'Saved' : 'Save'}
+                      </VideoSaveItem>
                     </VideoLikeButton>
                   </VideoLikeAndSaveContainer>
                 </VideoViewAndLikeButtonContainer>
@@ -196,8 +249,8 @@ class VideoItemDetails extends Component {
   }
 
   render() {
-    const {videoDetailsData} = this.state
-    console.log(videoDetailsData)
+    // const {videoDetailsData} = this.state
+    // console.log('video', videoDetailsData)
     return (
       <>
         <ContextComponent.Consumer>

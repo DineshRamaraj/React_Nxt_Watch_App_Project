@@ -5,10 +5,18 @@ export const VideoDetailContainer = styled.div`
   flex-direction: column;
   min-height: 100vh;
   background-color: ${props => (props.isDarkTheme ? '#0f0f0f' : '#f9f9f9')};
+  flex-grow: 1;
 `
 
 export const VideoContainer = styled.div`
   width: 100%;
+  height: 250px;
+  @media screen and (min-width: 576px) {
+    height: 400px;
+  }
+  @media screen and (min-width: 900px) {
+    height: 450px;
+  }
 `
 
 export const VideoContentContainer = styled.div`
@@ -90,7 +98,23 @@ export const VideoLikeItem = styled.p`
   font-size: 14px;
   font-weight: 600;
   margin-left: 8px;
-  color: #7e939f;
+  color: ${props => (props.isLiked ? '#4f46e5' : '#7e939f')};
+`
+
+export const VideoDisLikeItem = styled.p`
+  font-family: 'Roboto';
+  font-size: 14px;
+  font-weight: 600;
+  margin-left: 8px;
+  color: ${props => (props.isDisLiked ? '#4f46e5' : '#7e939f')};
+`
+
+export const VideoSaveItem = styled.p`
+  font-family: 'Roboto';
+  font-size: 14px;
+  font-weight: 600;
+  margin-left: 8px;
+  color: ${props => (props.isSaved ? '#4f46e5' : '#7e939f')};
 `
 
 export const HrLine = styled.hr`

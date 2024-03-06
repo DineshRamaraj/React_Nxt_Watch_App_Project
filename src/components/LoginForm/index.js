@@ -1,5 +1,6 @@
 import Cookies from 'js-cookie'
 import {Component} from 'react'
+import {Redirect} from 'react-router-dom'
 import ContextContainer from '../../Context'
 
 import {
@@ -78,6 +79,12 @@ class Login extends Component {
       showSubmitError,
       errorMsg,
     } = this.state
+
+    const jwtToken = Cookies.get('jwt_token')
+    if (jwtToken !== undefined) {
+      return <Redirect to="/" />
+    }
+
     return (
       <ContextContainer.Consumer>
         {value => {

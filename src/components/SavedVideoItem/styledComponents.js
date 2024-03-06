@@ -4,12 +4,18 @@ import {Link} from 'react-router-dom'
 export const VideoItemContainer = styled.div`
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   width: 100%;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   @media screen and (min-width: 576px) {
     flex-direction: row;
     width: 100%;
+    height: 200px;
+  }
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    width: 100%;
+    height: 230px;
   }
 `
 
@@ -19,14 +25,26 @@ export const VideoLink = styled(Link)`
   width: 100%;
   @media screen and (min-width: 576px) {
     width: 55%;
-    max-width: 350px;
+  }
+  @media screen and (min-width: 900px) {
+    width: 45%;
+  }
+  @media screen and (min-width: 1100px) {
+    width: 35%;
   }
 `
 
 export const VideoImage = styled.img`
   width: 100%;
   border-radius: 4px;
-  height: auto;
+  height: 250px;
+  @media screen and (min-width: 576px) {
+    height: 200px;
+  }
+
+  @media screen and (min-width: 1100px) {
+    height: 210px;
+  }
 `
 
 export const ProfileAndContentContainer = styled.div`

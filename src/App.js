@@ -1,5 +1,5 @@
 import {Component} from 'react'
-import {Switch, Route, withRouter} from 'react-router-dom'
+import {Switch, Route, Redirect, withRouter} from 'react-router-dom'
 import ProtectedRoute from './components/ProtectedRoute'
 import Login from './components/LoginForm'
 import Home from './components/Home'
@@ -7,6 +7,7 @@ import Trending from './components/Trending'
 import Gaming from './components/Gaming'
 import SavedVideos from './components/SavedVideos'
 import VideoItemDetails from './components/VideoItemDetails'
+import NotFound from './components/NotFound'
 import ContextComponents from './Context'
 import './App.css'
 
@@ -42,9 +43,25 @@ class App extends Component {
   }
 
   addSavedVideoItem = savedItem => {
-    this.setState(prevState => ({
-      savedVideosList: [...prevState.savedVideosList, savedItem],
-    }))
+    const {savedVideosList} = this.state
+    const findItem = savedVideosList.find(
+      eachItem => eachItem.id === savedItem.id,
+    )
+
+    // console.log('findItem ', findItem)
+
+    if (findItem === undefined) {
+      this.setState(prevState => ({
+        savedVideosList: [...prevState.savedVideosList, savedItem],
+      }))
+    } else {
+      const filteredItem = savedVideosList.filter(
+        eachItem => eachItem.id !== savedItem.id,
+      )
+      this.setState({
+        savedVideosList: filteredItem,
+      })
+    }
   }
 
   render() {
@@ -61,12 +78,14 @@ class App extends Component {
         }}
       >
         <Switch>
-          <Route exact path="=/login" component={Login} />
+          <Route exact path="/login" component={Login} />
           <ProtectedRoute exact path="/" component={Home} />
           <ProtectedRoute exact path="/trending" component={Trending} />
           <ProtectedRoute exact path="/gaming" component={Gaming} />
           <ProtectedRoute exact path="/saved" component={SavedVideos} />
           <ProtectedRoute path="/videos/:id" component={VideoItemDetails} />
+          <ProtectedRoute exact path="/not-found" component={NotFound} />
+          <Redirect to="/not-found" />
         </Switch>
       </ContextComponents.Provider>
     )
