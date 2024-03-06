@@ -1,17 +1,18 @@
 import styled from 'styled-components'
 
-export const NoSearchContainer = styled.div`
+export const NoSavedVideoContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 70vh;
+  background-color: ${props => (props.isDarkTheme ? '#181818' : '#f9f9f9')};
   @media screen and (min-width: 768px) {
     min-height: 100vh;
   }
 `
 
-export const NoSearchImage = styled.img`
+export const NoSavedImage = styled.img`
   width: 70%;
   @media screen and (min-width: 576px) {
     width: 50%;
@@ -27,7 +28,7 @@ export const NoSearchImage = styled.img`
   }
 `
 
-export const NoSearchHeading = styled.h1`
+export const NoSavedHeading = styled.h1`
   text-align: center;
   font-family: 'Roboto';
   font-size: 18px;
@@ -37,7 +38,7 @@ export const NoSearchHeading = styled.h1`
   }
 `
 
-export const NoSearchDescription = styled.p`
+export const NoSavedDescription = styled.p`
   text-align: center;
   font-family: 'Roboto';
   font-size: 14px;
@@ -46,17 +47,4 @@ export const NoSearchDescription = styled.p`
   @media screen and (min-width: 576px) {
     font-size: 16px;
   }
-`
-
-export const NoSearchRetryButton = styled.button`
-  font-size: 16px;
-  font-family: 'Roboto';
-  background-color: #4a47e0;
-  color: #ffffff;
-  border: none;
-  outline: none;
-  border-radius: 5px;
-  padding: 10px 25px;
-  cursor: pointer;
-  margin-top: 30px;
 `

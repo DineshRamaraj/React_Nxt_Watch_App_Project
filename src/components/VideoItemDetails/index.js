@@ -1,3 +1,4 @@
+import ReactPlayer from 'react-player'
 import {BiLike, BiDislike} from 'react-icons/bi'
 import {MdPlaylistAdd} from 'react-icons/md'
 import {formatDistanceToNow} from 'date-fns'
@@ -8,7 +9,10 @@ import FailureView from '../FailureView'
 import LoadingView from '../Loading'
 import {
   VideoDetailContainer,
+  VideoContentContainer,
+  VideoContainer,
   VideoTitle,
+  VideoViewAndLikeButtonContainer,
   VideoViewsAndDuration,
   VideoView,
   VideoDuration,
@@ -54,6 +58,8 @@ class VideoItemDetails extends Component {
     viewCount: data.view_count,
     publishedAt: data.published_at,
     description: data.description,
+    isLiked: false,
+    isDisLiked: false,
   })
 
   getDataFormServer = async () => {
@@ -91,10 +97,9 @@ class VideoItemDetails extends Component {
   renderSuccessView = () => {
     const {videoDetailsData} = this.state
     const {
-      id,
       title,
       videoUrl,
-      thumbnailUrl,
+      //   thumbnailUrl,
       channel,
       viewCount,
       publishedAt,
@@ -106,46 +111,69 @@ class VideoItemDetails extends Component {
       .split(' ')
       .slice(1, 3)
       .join(' ')
+
     return (
       <ContextComponent.Consumer>
         {value => {
-          const {isDarkTheme} = value
+          const {isDarkTheme, addSavedVideoItem} = value
+          const onClickSavedButton = () => {
+            addSavedVideoItem(videoDetailsData)
+          }
           return (
             <>
-              <VideoTitle isDarkTheme={isDarkTheme}>{title}</VideoTitle>
-              <VideoViewsAndDuration>
-                <VideoView isDarkTheme={isDarkTheme}>
-                  {viewCount} views
-                </VideoView>
-                <VideoDuration isDarkTheme={isDarkTheme}>
-                  {formatTime} ago
-                </VideoDuration>
-              </VideoViewsAndDuration>
-              <VideoLikeAndSaveContainer>
-                <VideoLikeButton type="button">
-                  <BiLike size={25} />
-                  <VideoLikeItem isDarkTheme={isDarkTheme}>Like</VideoLikeItem>
-                </VideoLikeButton>
-                <VideoLikeButton type="button">
-                  <BiDislike size={25} />
-                  <VideoLikeItem isDarkTheme={isDarkTheme}>
-                    Dislike
-                  </VideoLikeItem>
-                </VideoLikeButton>
-                <VideoLikeButton type="button">
-                  <MdPlaylistAdd size={25} />
-                  <VideoLikeItem isDarkTheme={isDarkTheme}>Save</VideoLikeItem>
-                </VideoLikeButton>
-              </VideoLikeAndSaveContainer>
-              <HrLine />
-              <ChannelProfileAndName>
-                <ChannelProfileImage src={profileImageUrl} alt={name} />
-                <ChannelNameAndSubscriber>
-                  <ChannelName>{name}</ChannelName>
-                  <ChannelSubscriber>{subscriberCount}</ChannelSubscriber>
-                </ChannelNameAndSubscriber>
-              </ChannelProfileAndName>
-              <VideoDescription>{description}</VideoDescription>
+              <VideoContainer>
+                <ReactPlayer url={videoUrl} width="100%" />
+              </VideoContainer>
+              <VideoContentContainer>
+                <VideoTitle isDarkTheme={isDarkTheme}>{title}</VideoTitle>
+                <VideoViewAndLikeButtonContainer>
+                  <VideoViewsAndDuration>
+                    <VideoView isDarkTheme={isDarkTheme}>
+                      {viewCount} views
+                    </VideoView>
+                    <VideoDuration isDarkTheme={isDarkTheme}>
+                      {formatTime} ago
+                    </VideoDuration>
+                  </VideoViewsAndDuration>
+                  <VideoLikeAndSaveContainer>
+                    <VideoLikeButton type="button">
+                      <BiLike size={20} color="#7E939F" />
+                      <VideoLikeItem isDarkTheme={isDarkTheme}>
+                        Like
+                      </VideoLikeItem>
+                    </VideoLikeButton>
+                    <VideoLikeButton type="button">
+                      <BiDislike size={20} color="#7E939F" />
+                      <VideoLikeItem isDarkTheme={isDarkTheme}>
+                        Dislike
+                      </VideoLikeItem>
+                    </VideoLikeButton>
+                    <VideoLikeButton type="button" onClick={onClickSavedButton}>
+                      <MdPlaylistAdd size={20} color="#7E939F" />
+                      <VideoLikeItem isDarkTheme={isDarkTheme}>
+                        Save
+                      </VideoLikeItem>
+                    </VideoLikeButton>
+                  </VideoLikeAndSaveContainer>
+                </VideoViewAndLikeButtonContainer>
+                <HrLine isDarkTheme={isDarkTheme} />
+                <ChannelProfileAndName isDarkTheme={isDarkTheme}>
+                  <ChannelProfileImage
+                    src={profileImageUrl}
+                    alt={name}
+                    isDarkTheme={isDarkTheme}
+                  />
+                  <ChannelNameAndSubscriber isDarkTheme={isDarkTheme}>
+                    <ChannelName isDarkTheme={isDarkTheme}>{name}</ChannelName>
+                    <ChannelSubscriber isDarkTheme={isDarkTheme}>
+                      {subscriberCount} subscribers
+                    </ChannelSubscriber>
+                    <VideoDescription isDarkTheme={isDarkTheme}>
+                      {description}
+                    </VideoDescription>
+                  </ChannelNameAndSubscriber>
+                </ChannelProfileAndName>
+              </VideoContentContainer>
             </>
           )
         }}
@@ -176,7 +204,10 @@ class VideoItemDetails extends Component {
           {value => {
             const {isDarkTheme} = value
             return (
-              <VideoDetailContainer isDarkTheme={isDarkTheme}>
+              <VideoDetailContainer
+                isDarkTheme={isDarkTheme}
+                data-testid="videoItemDetails"
+              >
                 {this.renderMainViews()}
               </VideoDetailContainer>
             )

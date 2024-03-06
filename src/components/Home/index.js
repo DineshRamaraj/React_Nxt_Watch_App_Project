@@ -136,6 +136,7 @@ class Home extends Component {
                   onChange={this.changeSearchInput}
                 />
                 <SearchIcon
+                  data-testid="searchButton"
                   type="button"
                   isDarkTheme={isDarkTheme}
                   onClick={this.clickSearch}

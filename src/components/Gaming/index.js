@@ -4,7 +4,6 @@ import ContextComponent from '../../Context'
 import GamingItem from '../GamingItem'
 import FailureView from '../FailureView'
 import LoadingView from '../Loading'
-
 import {GamingContainer, GamingListContainer} from './styledComponents'
 
 const apiStatusConstants = {
@@ -41,7 +40,9 @@ class Gaming extends Component {
       },
       method: 'GET',
     }
+
     const response = await fetch(apiUrl, options)
+
     if (response.ok) {
       const data = await response.json()
       const updatedData = data.videos.map(eachItem =>

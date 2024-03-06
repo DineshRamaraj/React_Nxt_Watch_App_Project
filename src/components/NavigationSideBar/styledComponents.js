@@ -12,7 +12,7 @@ export const NavigationContainer = styled.nav`
     background-color: ${props => (props.isDarkTheme ? '#212121' : '#ffffff')};
     min-width: 250px;
     max-width: 20%;
-    max-height: 100vh;
+    min-height: 90vh;
   }
 `
 
@@ -63,7 +63,7 @@ export const NavBarContactContainer = styled.div`
   padding-bottom: 0px;
 `
 
-export const NavContactHeading = styled.h1`
+export const NavContactHeading = styled.p`
   font-family: 'Roboto';
   font-size: 20px;
   color: ${props => (props.isDarkTheme ? '#ffffff' : '#000000')};

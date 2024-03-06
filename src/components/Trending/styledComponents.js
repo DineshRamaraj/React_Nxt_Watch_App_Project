@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const TrendingContainer = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: ${props => (props.isDarkTheme ? '#181818' : '#ffffff')};
+  background-color: ${props => (props.isDarkTheme ? '#0f0f0f' : '#f9f9f9')};
   height: 90vh;
   max-height: 100vh;
   width: 100%;

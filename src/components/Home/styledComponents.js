@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const HomeContainer = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: ${props => (props.isDarkTheme ? '#181818' : '#ffffff')};
+  background-color: ${props => (props.isDarkTheme ? '#181818' : '#f9f9f9')};
   height: 90vh;
   max-height: 100vh;
   width: 100%;
@@ -43,7 +43,7 @@ export const SearchInput = styled.input`
   outline: none;
 `
 
-export const SearchIcon = styled.div`
+export const SearchIcon = styled.button`
   background-color: ${props => (props.isDarkTheme ? '#313131' : '#F4F4F4')};
   width: 20%;
   display: flex;
@@ -51,6 +51,7 @@ export const SearchIcon = styled.div`
   align-items: center;
   flex-grow: 1;
   height: 100%;
+  border: none;
   border-left: 1px solid #424242;
   cursor: pointer;
   border-radius: 0px 5px 5px 0px;
