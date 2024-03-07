@@ -37,10 +37,10 @@ const VideoItem = props => (
       return (
         <VideoItemContainer isDarkTheme={isDarkTheme}>
           <VideoLink to={`/videos/${id}`}>
-            <VideoImage src={thumbnailUrl} alt={title} />
+            <VideoImage src={thumbnailUrl} alt="video thumbnail" />
           </VideoLink>
           <ProfileAndContentContainer>
-            <ProfileImage src={profileImageUrl} alt={name} />
+            <ProfileImage src={profileImageUrl} alt="channel logo" />
             <VideoContentContainer>
               <VideoTitle isDarkTheme={isDarkTheme}>{title}</VideoTitle>
               <ChannelAndViewAndDuration>

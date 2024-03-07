@@ -4,15 +4,16 @@ import {Component} from 'react'
 
 import ContextComponent from '../../Context'
 import VideoItem from '../VideoItem'
-import FailureView from '../FailureView'
+import Failure from '../Failure'
 import NoSearchResult from '../NoSearchResult'
 import LoadingView from '../Loading'
+import PremiumBanner from '../PremiumBanner'
 
 import {
   HomeContainer,
   SearchContainer,
   SearchInput,
-  SearchIcon,
+  SearchIconButton,
   VideoListContainer,
 } from './styledComponents'
 
@@ -28,6 +29,7 @@ class Home extends Component {
     videoList: [],
     searchInput: '',
     apiStatus: apiStatusConstants.initial,
+    banner: true,
   }
 
   componentDidMount() {
@@ -72,9 +74,17 @@ class Home extends Component {
     }
   }
 
+  clickBannerClose = () => {
+    this.setState({banner: false})
+  }
+
   renderLoadingView = () => <LoadingView />
 
-  renderFailureView = () => <FailureView />
+  retryButton = () => {
+    this.setState({searchInput: ''}, this.getVideoListData)
+  }
+
+  renderFailureView = () => <Failure retryButton={this.retryButton} />
 
   renderSuccessView = () => (
     <ContextComponent.Consumer>
@@ -113,19 +123,25 @@ class Home extends Component {
     this.setState({searchInput: event.target.value})
   }
 
-  clickSearch = () => {
-    this.getVideoListData()
+  clickSearch = event => {
+    if (event.key === 'Enter' || event.type === 'click') {
+      this.getVideoListData()
+    }
   }
 
   render() {
+    const {searchInput, banner} = this.state
     return (
       <ContextComponent.Consumer>
         {value => {
           const {isDarkTheme} = value
-          const {searchInput} = this.state
           return (
             <HomeContainer isDarkTheme={isDarkTheme} data-testid="home">
-              {/* <PremiumBanner /> */}
+              {banner ? (
+                <PremiumBanner clickBannerClose={this.clickBannerClose} />
+              ) : (
+                ''
+              )}
               <SearchContainer>
                 <SearchInput
                   id="search"
@@ -134,8 +150,9 @@ class Home extends Component {
                   isDarkTheme={isDarkTheme}
                   value={searchInput}
                   onChange={this.changeSearchInput}
+                  onKeyDown={this.clickSearch}
                 />
-                <SearchIcon
+                <SearchIconButton
                   data-testid="searchButton"
                   type="button"
                   isDarkTheme={isDarkTheme}
@@ -145,7 +162,7 @@ class Home extends Component {
                     size={22}
                     color={isDarkTheme ? '#909090' : '#000000'}
                   />
-                </SearchIcon>
+                </SearchIconButton>
               </SearchContainer>
               {this.renderMainViews()}
             </HomeContainer>

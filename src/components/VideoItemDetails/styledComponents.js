@@ -93,28 +93,12 @@ export const VideoLikeButton = styled.div`
   cursor: pointer;
 `
 
-export const VideoLikeItem = styled.p`
+export const VideoButtonText = styled.span`
   font-family: 'Roboto';
   font-size: 14px;
   font-weight: 600;
   margin-left: 8px;
-  color: ${props => (props.isLiked ? '#4f46e5' : '#7e939f')};
-`
-
-export const VideoDisLikeItem = styled.p`
-  font-family: 'Roboto';
-  font-size: 14px;
-  font-weight: 600;
-  margin-left: 8px;
-  color: ${props => (props.isDisLiked ? '#4f46e5' : '#7e939f')};
-`
-
-export const VideoSaveItem = styled.p`
-  font-family: 'Roboto';
-  font-size: 14px;
-  font-weight: 600;
-  margin-left: 8px;
-  color: ${props => (props.isSaved ? '#4f46e5' : '#7e939f')};
+  color: ${props => (props.isLiked ? '#2563eb' : '#64748b')};
 `
 
 export const HrLine = styled.hr`

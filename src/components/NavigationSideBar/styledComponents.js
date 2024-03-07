@@ -65,7 +65,7 @@ export const NavBarContactContainer = styled.div`
 
 export const NavContactHeading = styled.p`
   font-family: 'Roboto';
-  font-size: 20px;
+  font-size: 14px;
   color: ${props => (props.isDarkTheme ? '#ffffff' : '#000000')};
 `
 
@@ -81,6 +81,6 @@ export const NavContactImage = styled.img`
 
 export const NavContactDescription = styled.p`
   font-family: 'Roboto';
-  font-size: 16px;
+  font-size: 14px;
   color: ${props => (props.isDarkTheme ? '#ffffff' : '#000000')};
 `

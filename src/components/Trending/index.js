@@ -1,12 +1,20 @@
+import {HiFire} from 'react-icons/hi'
 import Cookies from 'js-cookie'
 import {Component} from 'react'
 
 import ContextComponent from '../../Context'
 import TrendingVideoItem from '../TrendingVideoItem'
-import FailureView from '../FailureView'
+import Failure from '../Failure'
 import LoadingView from '../Loading'
 
-import {TrendingContainer, VideoListContainer} from './styledComponents'
+import {
+  MainTrending,
+  TrendingContainer,
+  BannerContainer,
+  BannerIconContainer,
+  BannerHeading,
+  VideoListContainer,
+} from './styledComponents'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -53,7 +61,7 @@ class Trending extends Component {
       const updatedData = data.videos.map(eachItem =>
         this.convertResponseDataIntoMyData(eachItem),
       )
-      console.log(updatedData)
+      //   console.log(updatedData)
       this.setState({
         trendingList: updatedData,
         apiStatus: apiStatusConstants.success,
@@ -63,9 +71,29 @@ class Trending extends Component {
     }
   }
 
+  renderBanner = () => (
+    <ContextComponent.Consumer>
+      {value => {
+        const {isDarkTheme} = value
+        return (
+          <BannerContainer isDarkTheme={isDarkTheme}>
+            <BannerIconContainer isDarkTheme={isDarkTheme}>
+              <HiFire size={30} color={isDarkTheme ? '#FF021B' : '#ff031c'} />
+            </BannerIconContainer>
+            <BannerHeading isDarkTheme={isDarkTheme}>Trending</BannerHeading>
+          </BannerContainer>
+        )
+      }}
+    </ContextComponent.Consumer>
+  )
+
   renderLoadingView = () => <LoadingView />
 
-  renderFailureView = () => <FailureView />
+  retryButton = () => {
+    this.getTrendingList()
+  }
+
+  renderFailureView = () => <Failure retryButton={this.retryButton} />
 
   renderSuccessView = () => (
     <ContextComponent.Consumer>
@@ -99,21 +127,19 @@ class Trending extends Component {
 
   render() {
     return (
-      <>
-        <ContextComponent.Consumer>
-          {value => {
-            const {isDarkTheme} = value
-            return (
-              <TrendingContainer
-                isDarkTheme={isDarkTheme}
-                data-testid="trending"
-              >
+      <ContextComponent.Consumer>
+        {value => {
+          const {isDarkTheme} = value
+          return (
+            <MainTrending isDarkTheme={isDarkTheme} data-testid="trending">
+              {this.renderBanner()}
+              <TrendingContainer isDarkTheme={isDarkTheme}>
                 {this.renderMainViews()}
               </TrendingContainer>
-            )
-          }}
-        </ContextComponent.Consumer>
-      </>
+            </MainTrending>
+          )
+        }}
+      </ContextComponent.Consumer>
     )
   }
 }

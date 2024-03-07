@@ -5,7 +5,7 @@ import {formatDistanceToNow} from 'date-fns'
 import Cookies from 'js-cookie'
 import {Component} from 'react'
 import ContextComponent from '../../Context'
-import FailureView from '../FailureView'
+import Failure from '../Failure'
 import LoadingView from '../Loading'
 import {
   VideoDetailContainer,
@@ -18,9 +18,7 @@ import {
   VideoDuration,
   VideoLikeAndSaveContainer,
   VideoLikeButton,
-  VideoLikeItem,
-  VideoDisLikeItem,
-  VideoSaveItem,
+  VideoButtonText,
   HrLine,
   ChannelProfileAndName,
   ChannelProfileImage,
@@ -92,7 +90,11 @@ class VideoItemDetails extends Component {
     }
   }
 
-  renderFailureView = () => <FailureView />
+  retryButton = () => {
+    this.getDataFormServer()
+  }
+
+  renderFailureView = () => <Failure retryButton={this.retryButton} />
 
   renderLoadingView = () => <LoadingView />
 
@@ -142,7 +144,20 @@ class VideoItemDetails extends Component {
         {value => {
           const {isDarkTheme, addSavedVideoItem, savedVideosList} = value
 
-          const isSaved = savedVideosList.find(eachItem => eachItem.id === id)
+          const textColor = isDarkTheme ? '#64748b' : '#231f20'
+          const index = savedVideosList.findIndex(
+            eachItem => eachItem.id === id,
+          )
+
+          let isSaved
+
+          if (index === -1) {
+            isSaved = false
+          } else {
+            isSaved = true
+          }
+
+          const saveIconColor = isSaved ? '#2563eb' : textColor
 
           const onClickSavedButton = () => {
             addSavedVideoItem(videoDetailsData)
@@ -171,41 +186,39 @@ class VideoItemDetails extends Component {
                     >
                       <BiLike
                         size={20}
-                        color={isLiked ? '#4f46e5' : '#7E939F'}
+                        color={isLiked ? '#2563eb' : '#64748b'}
                       />
-                      <VideoLikeItem
+                      <VideoButtonText
                         isDarkTheme={isDarkTheme}
                         isLiked={isLiked}
                       >
                         Like
-                      </VideoLikeItem>
+                      </VideoButtonText>
                     </VideoLikeButton>
+
                     <VideoLikeButton
                       type="button"
                       onClick={this.onClickDisLikeButton}
                     >
                       <BiDislike
                         size={20}
-                        color={isDisLiked ? '#4f46e5' : '#7E939F'}
+                        color={isDisLiked ? '#2563eb' : '#64748b'}
                       />
-                      <VideoDisLikeItem
+                      <VideoButtonText
                         isDarkTheme={isDarkTheme}
                         isDisLiked={isDisLiked}
                       >
                         Dislike
-                      </VideoDisLikeItem>
+                      </VideoButtonText>
                     </VideoLikeButton>
                     <VideoLikeButton type="button" onClick={onClickSavedButton}>
-                      <MdPlaylistAdd
-                        size={20}
-                        color={isSaved ? '#4f46e5' : '#7E939F'}
-                      />
-                      <VideoSaveItem
+                      <MdPlaylistAdd size={20} color={saveIconColor} />
+                      <VideoButtonText
                         isDarkTheme={isDarkTheme}
                         isSaved={isSaved}
                       >
                         {isSaved ? 'Saved' : 'Save'}
-                      </VideoSaveItem>
+                      </VideoButtonText>
                     </VideoLikeButton>
                   </VideoLikeAndSaveContainer>
                 </VideoViewAndLikeButtonContainer>
@@ -213,13 +226,13 @@ class VideoItemDetails extends Component {
                 <ChannelProfileAndName isDarkTheme={isDarkTheme}>
                   <ChannelProfileImage
                     src={profileImageUrl}
-                    alt={name}
+                    alt="channel logo"
                     isDarkTheme={isDarkTheme}
                   />
                   <ChannelNameAndSubscriber isDarkTheme={isDarkTheme}>
                     <ChannelName isDarkTheme={isDarkTheme}>{name}</ChannelName>
                     <ChannelSubscriber isDarkTheme={isDarkTheme}>
-                      {subscriberCount} subscribers
+                      {subscriberCount} Subscribers
                     </ChannelSubscriber>
                     <VideoDescription isDarkTheme={isDarkTheme}>
                       {description}

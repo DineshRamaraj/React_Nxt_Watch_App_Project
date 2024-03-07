@@ -1,26 +1,67 @@
+import {MdPlaylistAdd} from 'react-icons/md'
 import ContextComponent from '../../Context'
 import SavedVideoItem from '../SavedVideoItem'
 import NoSavedVideo from '../NoSavedVideo'
-import {SavedVideosContainer, VideoListContainer} from './styledComponents'
+
+import {
+  MainSavedVideoContainer,
+  SavedVideosContainer,
+  BannerContainer,
+  BannerIconContainer,
+  BannerHeading,
+  VideoListContainer,
+} from './styledComponents'
+
+const renderBanner = () => (
+  <ContextComponent.Consumer>
+    {value => {
+      const {isDarkTheme} = value
+      return (
+        <BannerContainer isDarkTheme={isDarkTheme}>
+          <BannerIconContainer isDarkTheme={isDarkTheme}>
+            <MdPlaylistAdd
+              size={30}
+              color={isDarkTheme ? '#FF021B' : '#ff031c'}
+            />
+          </BannerIconContainer>
+          <BannerHeading isDarkTheme={isDarkTheme}>Saved Videos</BannerHeading>
+        </BannerContainer>
+      )
+    }}
+  </ContextComponent.Consumer>
+)
 
 const SavedVideos = () => (
   <>
     <ContextComponent.Consumer>
       {value => {
         const {isDarkTheme, savedVideosList} = value
-        // console.log('SavedVideo ', savedVideosList.length)
-        if (savedVideosList.length) {
+        if (savedVideosList.length > 0) {
           return (
-            <SavedVideosContainer isDarkTheme={isDarkTheme} data-testid="saved">
-              <VideoListContainer isDarkTheme={isDarkTheme}>
-                {savedVideosList.map(eachItem => (
-                  <SavedVideoItem key={eachItem.id} videoDetails={eachItem} />
-                ))}
-              </VideoListContainer>
-            </SavedVideosContainer>
+            <MainSavedVideoContainer
+              isDarkTheme={isDarkTheme}
+              data-testid="savedVideos"
+            >
+              {renderBanner()}
+              <SavedVideosContainer isDarkTheme={isDarkTheme}>
+                <VideoListContainer isDarkTheme={isDarkTheme}>
+                  {savedVideosList.map(eachItem => (
+                    <SavedVideoItem key={eachItem.id} videoDetails={eachItem} />
+                  ))}
+                </VideoListContainer>
+              </SavedVideosContainer>
+            </MainSavedVideoContainer>
           )
         }
-        return <NoSavedVideo />
+        return (
+          <MainSavedVideoContainer
+            isDarkTheme={isDarkTheme}
+            data-testid="savedVideos"
+          >
+            {renderBanner()}
+            <NoSavedVideo />
+          </MainSavedVideoContainer>
+        )
       }}
     </ContextComponent.Consumer>
   </>

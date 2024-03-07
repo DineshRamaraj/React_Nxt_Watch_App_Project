@@ -1,8 +1,9 @@
 import {formatDistanceToNow} from 'date-fns'
 import ContextComponent from '../../Context'
 import {
-  VideoItemContainer,
   VideoLink,
+  VideoItemContainer,
+  //   VideoImageContainer,
   VideoImage,
   ProfileAndContentContainer,
   ProfileImage,
@@ -36,25 +37,27 @@ const VideoItem = props => (
       return (
         <VideoItemContainer isDarkTheme={isDarkTheme}>
           <VideoLink to={`/videos/${id}`}>
-            <VideoImage src={thumbnailUrl} alt={thumbnailUrl} />
+            {/* <VideoImageContainer> */}
+            <VideoImage src={thumbnailUrl} alt="video thumbnail" />
+            {/* </VideoImageContainer> */}
+            <ProfileAndContentContainer>
+              <ProfileImage src={profileImageUrl} alt="channel logo" />
+              <VideoContentContainer>
+                <VideoTitle isDarkTheme={isDarkTheme}>{title}</VideoTitle>
+                <ChannelAndViewAndDuration>
+                  <VideoChannel isDarkTheme={isDarkTheme}>{name}</VideoChannel>
+                  <VideoViewsAndDuration>
+                    <VideoView isDarkTheme={isDarkTheme}>
+                      {viewCount} views
+                    </VideoView>
+                    <VideoDuration isDarkTheme={isDarkTheme}>
+                      {formatTime} ago
+                    </VideoDuration>
+                  </VideoViewsAndDuration>
+                </ChannelAndViewAndDuration>
+              </VideoContentContainer>
+            </ProfileAndContentContainer>
           </VideoLink>
-          <ProfileAndContentContainer>
-            <ProfileImage src={profileImageUrl} alt={profileImageUrl} />
-            <VideoContentContainer>
-              <VideoTitle isDarkTheme={isDarkTheme}>{title}</VideoTitle>
-              <ChannelAndViewAndDuration>
-                <VideoChannel isDarkTheme={isDarkTheme}>{name}</VideoChannel>
-                <VideoViewsAndDuration>
-                  <VideoView isDarkTheme={isDarkTheme}>
-                    {viewCount} views
-                  </VideoView>
-                  <VideoDuration isDarkTheme={isDarkTheme}>
-                    {formatTime} ago
-                  </VideoDuration>
-                </VideoViewsAndDuration>
-              </ChannelAndViewAndDuration>
-            </VideoContentContainer>
-          </ProfileAndContentContainer>
         </VideoItemContainer>
       )
     }}

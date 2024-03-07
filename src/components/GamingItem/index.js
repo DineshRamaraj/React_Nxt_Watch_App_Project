@@ -18,12 +18,12 @@ const GamingItem = props => {
         return (
           <GamingItemContainer>
             <GameLink to={`/videos/${id}`}>
-              <GameImage src={thumbnailUrl} alt={title} />
+              <GameImage src={thumbnailUrl} alt="video thumbnail" />
+              <GameTitle isDarkTheme={isDarkTheme}>{title}</GameTitle>
+              <GameViewCount isDarkTheme={isDarkTheme}>
+                {viewCount} Watching Worldwide
+              </GameViewCount>
             </GameLink>
-            <GameTitle isDarkTheme={isDarkTheme}>{title}</GameTitle>
-            <GameViewCount isDarkTheme={isDarkTheme}>
-              {viewCount} Watching Worldwide
-            </GameViewCount>
           </GamingItemContainer>
         )
       }}

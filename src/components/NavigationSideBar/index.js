@@ -44,6 +44,7 @@ const NavigationSideBar = () => (
           <NavBarContainer>
             <NavLink to="/">
               <NavBarItem
+                key="home"
                 isActive={activeTabId === 'home'}
                 isDarkTheme={isDarkTheme}
                 onClick={onClickHome}
@@ -59,6 +60,7 @@ const NavigationSideBar = () => (
             </NavLink>
             <NavLink to="/trending">
               <NavBarItem
+                key="trending"
                 isActive={activeTabId === 'trending'}
                 onClick={onClickTrending}
                 isDarkTheme={isDarkTheme}
@@ -74,6 +76,7 @@ const NavigationSideBar = () => (
             </NavLink>
             <NavLink to="/gaming">
               <NavBarItem
+                key="gaming"
                 isActive={activeTabId === 'gaming'}
                 onClick={onClickGaming}
                 isDarkTheme={isDarkTheme}
@@ -87,8 +90,9 @@ const NavigationSideBar = () => (
                 </NavItem>
               </NavBarItem>
             </NavLink>
-            <NavLink to="/saved">
+            <NavLink to="/saved-videos">
               <NavBarItem
+                key="saved"
                 isActive={activeTabId === 'saved'}
                 onClick={onClickSaved}
                 isDarkTheme={isDarkTheme}

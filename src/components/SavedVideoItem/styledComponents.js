@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
 
-export const VideoItemContainer = styled.div`
+export const VideoItemContainer = styled.li`
   display: flex;
   flex-direction: column;
   width: 100%;

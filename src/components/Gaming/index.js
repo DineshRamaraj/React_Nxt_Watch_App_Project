@@ -1,10 +1,18 @@
+import {SiYoutubegaming} from 'react-icons/si'
 import Cookies from 'js-cookie'
 import {Component} from 'react'
 import ContextComponent from '../../Context'
 import GamingItem from '../GamingItem'
-import FailureView from '../FailureView'
 import LoadingView from '../Loading'
-import {GamingContainer, GamingListContainer} from './styledComponents'
+import Failure from '../Failure'
+import {
+  MainGaming,
+  GamingContainer,
+  BannerContainer,
+  BannerIconContainer,
+  BannerHeading,
+  GamingListContainer,
+} from './styledComponents'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -58,9 +66,32 @@ class Gaming extends Component {
     }
   }
 
+  renderBanner = () => (
+    <ContextComponent.Consumer>
+      {value => {
+        const {isDarkTheme} = value
+        return (
+          <BannerContainer isDarkTheme={isDarkTheme}>
+            <BannerIconContainer isDarkTheme={isDarkTheme}>
+              <SiYoutubegaming
+                size={30}
+                color={isDarkTheme ? '#FF021B' : '#ff031c'}
+              />
+            </BannerIconContainer>
+            <BannerHeading isDarkTheme={isDarkTheme}>Gaming</BannerHeading>
+          </BannerContainer>
+        )
+      }}
+    </ContextComponent.Consumer>
+  )
+
   renderLoadingView = () => <LoadingView />
 
-  renderFailureView = () => <FailureView />
+  retryButton = () => {
+    this.getGamingList()
+  }
+
+  renderFailureView = () => <Failure retryButton={this.retryButton} />
 
   renderSuccessView = () => (
     <ContextComponent.Consumer>
@@ -99,9 +130,12 @@ class Gaming extends Component {
           {value => {
             const {isDarkTheme} = value
             return (
-              <GamingContainer isDarkTheme={isDarkTheme} data-testid="gaming">
-                {this.renderMainViews()}
-              </GamingContainer>
+              <MainGaming isDarkTheme={isDarkTheme} data-testid="gaming">
+                {this.renderBanner()}
+                <GamingContainer isDarkTheme={isDarkTheme}>
+                  {this.renderMainViews()}
+                </GamingContainer>
+              </MainGaming>
             )
           }}
         </ContextComponent.Consumer>

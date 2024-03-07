@@ -1,12 +1,13 @@
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
 
-export const VideoItemContainer = styled.div`
+export const VideoItemContainer = styled.li`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   width: 100%;
   margin-bottom: 30px;
+  cursor: pointer;
   @media screen and (min-width: 576px) {
     flex-direction: row;
     width: 100%;
@@ -15,7 +16,10 @@ export const VideoItemContainer = styled.div`
 
 export const VideoLink = styled(Link)`
   text-decoration: none;
-  cursor: pointer;
+  width: 100%;
+`
+
+export const VideoImageContainer = styled.div`
   width: 100%;
   @media screen and (min-width: 576px) {
     width: 55%;

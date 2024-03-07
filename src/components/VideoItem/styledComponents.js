@@ -7,6 +7,7 @@ export const VideoItemContainer = styled.div`
   flex-wrap: wrap;
   width: 100%;
   margin-bottom: 30px;
+  cursor: pointer;
   @media screen and (min-width: 576px) {
     width: 50%;
     padding: 0px 10px 10px 0px;
@@ -21,7 +22,6 @@ export const VideoItemContainer = styled.div`
 
 export const VideoLink = styled(Link)`
   text-decoration: none;
-  cursor: pointer;
 `
 
 export const VideoImage = styled.img`

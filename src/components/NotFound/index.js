@@ -11,7 +11,7 @@ const NotFound = () => (
     {value => {
       const {isDarkTheme} = value
       return (
-        <NotFoundContainer isDarkTheme={isDarkTheme}>
+        <NotFoundContainer isDarkTheme={isDarkTheme} data-testid="not found">
           <NotFoundImage
             src={
               isDarkTheme
@@ -24,7 +24,7 @@ const NotFound = () => (
             Page Not Found
           </NotFoundHeading>
           <NotFoundDescription isDarkTheme={isDarkTheme}>
-            We are sorry, the page you required could not found.
+            we are sorry, the page you requested could not be found.
           </NotFoundDescription>
         </NotFoundContainer>
       )

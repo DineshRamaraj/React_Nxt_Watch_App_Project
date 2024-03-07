@@ -43,7 +43,7 @@ export const SearchInput = styled.input`
   outline: none;
 `
 
-export const SearchIcon = styled.button`
+export const SearchIconButton = styled.button`
   background-color: ${props => (props.isDarkTheme ? '#313131' : '#F4F4F4')};
   width: 20%;
   display: flex;
@@ -57,11 +57,13 @@ export const SearchIcon = styled.button`
   border-radius: 0px 5px 5px 0px;
 `
 
-export const VideoListContainer = styled.div`
+export const VideoListContainer = styled.ul`
   display: flex;
-  flex-direction: row;
   justify-content: flex-start;
   flex-wrap: wrap;
-  min-height: 50vh;
+  width: 100%;
+  //   min-height: 100vh;
   margin-top: 20px;
+  list-style-type: none;
+  padding-left: 0px;
 `

@@ -1,13 +1,20 @@
 import {Link} from 'react-router-dom'
 import styled from 'styled-components'
 
-export const GamingItemContainer = styled.div`
+export const GameLink = styled(Link)`
+  text-decoration: none;
+  cursor: pointer;
+`
+
+export const GamingItemContainer = styled.li`
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 100%;
   padding-right: 10px;
   padding-bottom: 40px;
-  flex-grow: 1;
+  @media screen and (min-width: 400px) {
+    width: 50%;
+  }
   @media screen and (min-width: 576px) {
     width: 33%;
   }
@@ -27,27 +34,28 @@ export const GamingItemContainer = styled.div`
   }
 `
 
-export const GameLink = styled(Link)`
-  text-decoration: none;
-  cursor: pointer;
-`
-
 export const GameImage = styled.img`
   width: 100%;
 `
 
 export const GameTitle = styled.h1`
   font-family: 'Roboto';
-  font-size: 18px;
+  font-size: 16px;
   margin-top: 15px;
   margin-bottom: 5px;
   color: ${props => (props.isDarkTheme ? '#F8FAFC' : '#203152')};
+  @media screen and (min-width: 900px) {
+    font-size: 18px;
+  }
 `
 
 export const GameViewCount = styled.p`
   font-family: 'Roboto';
-  font-size: 14px;
+  font-size: 12px;
   margin: 0px;
   margin-top: 5px;
   color: ${props => (props.isDarkTheme ? '#3A6789' : '#756F77')};
+  @media screen and (min-width: 900px) {
+    font-size: 14px;
+  }
 `

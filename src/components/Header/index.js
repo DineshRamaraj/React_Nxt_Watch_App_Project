@@ -102,7 +102,7 @@ const Header = props => (
                 {close => (
                   <PopupContainer>
                     <PopupHeading>
-                      Are you sure you want to logout?
+                      Are you sure, you want to logout?
                     </PopupHeading>
                     <PopupButtonContainer>
                       <PopupCancel type="button" onClick={() => close()}>
