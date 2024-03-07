@@ -11,11 +11,11 @@ import {
   NavLink,
   NavItem,
   NavBarContainer,
-  NavBarContactContainer,
-  NavContactHeading,
-  NavContactImageContainer,
-  NavContactImage,
-  NavContactDescription,
+  NavBarContentContainer,
+  NavContentHeading,
+  NavContentImageContainer,
+  NavContentImage,
+  NavContentDescription,
 } from './styledComponents'
 
 const NavigationSideBar = () => (
@@ -107,28 +107,28 @@ const NavigationSideBar = () => (
               </NavBarItem>
             </NavLink>
           </NavBarContainer>
-          <NavBarContactContainer>
-            <NavContactHeading isDarkTheme={isDarkTheme}>
+          <NavBarContentContainer>
+            <NavContentHeading isDarkTheme={isDarkTheme}>
               CONTACT US
-            </NavContactHeading>
-            <NavContactImageContainer>
-              <NavContactImage
+            </NavContentHeading>
+            <NavContentImageContainer>
+              <NavContentImage
                 src="https://assets.ccbp.in/frontend/react-js/nxt-watch-facebook-logo-img.png"
                 alt="facebook logo"
               />
-              <NavContactImage
+              <NavContentImage
                 src="https://assets.ccbp.in/frontend/react-js/nxt-watch-twitter-logo-img.png"
                 alt="twitter logo"
               />
-              <NavContactImage
+              <NavContentImage
                 src="https://assets.ccbp.in/frontend/react-js/nxt-watch-linked-in-logo-img.png"
                 alt="linked in logo"
               />
-            </NavContactImageContainer>
-            <NavContactDescription isDarkTheme={isDarkTheme}>
+            </NavContentImageContainer>
+            <NavContentDescription isDarkTheme={isDarkTheme}>
               Enjoy! Now to see your channels and recommendations!
-            </NavContactDescription>
-          </NavBarContactContainer>
+            </NavContentDescription>
+          </NavBarContentContainer>
         </NavigationContainer>
       )
     }}

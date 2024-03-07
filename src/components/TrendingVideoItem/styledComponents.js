@@ -61,7 +61,7 @@ export const VideoContentContainer = styled.div`
   }
 `
 
-export const VideoTitle = styled.h1`
+export const VideoTitle = styled.p`
   font-family: 'Roboto';
   font-size: 14px;
   font-weight: 600;

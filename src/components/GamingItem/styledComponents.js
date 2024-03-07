@@ -38,7 +38,7 @@ export const GameImage = styled.img`
   width: 100%;
 `
 
-export const GameTitle = styled.h1`
+export const GameTitle = styled.p`
   font-family: 'Roboto';
   font-size: 16px;
   margin-top: 15px;

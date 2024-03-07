@@ -2,27 +2,31 @@ import styled from 'styled-components'
 import {Link} from 'react-router-dom'
 
 export const NavigationContainer = styled.nav`
-  display: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 90vh;
   @media screen and (min-width: 768px) {
-    // display: block;
-    display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: stretch;
     padding-top: 20px;
     background-color: ${props => (props.isDarkTheme ? '#212121' : '#ffffff')};
-    min-width: 250px;
-    max-width: 20%;
-    min-height: 90vh;
+    width: 100%;
   }
 `
 
 export const NavBarContainer = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
 `
+
 export const NavLink = styled(Link)`
   text-decoration: none;
 `
+
 export const NavBarItem = styled.div`
   display: flex;
   flex-direction: row;
@@ -46,6 +50,11 @@ export const NavBarItem = styled.div`
     transform: ${props => (props.isActive ? 'scale(1)' : 'scale(1.1)')};
     margin-left: ${props => (props.isActive ? '0px' : '5px')};
   }
+  @media screen and (max-width: 769px) {
+    &:hover {
+      margin-left: ${props => (props.isActive ? '0px' : '20px')};
+    }
+  }
 `
 
 export const NavItem = styled.p`
@@ -56,30 +65,33 @@ export const NavItem = styled.p`
   font-weight: ${props => (props.isActive ? 500 : 400)};
 `
 
-export const NavBarContactContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  padding-bottom: 0px;
+export const NavBarContentContainer = styled.div`
+  display: none;
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    padding-bottom: 0px;
+  }
 `
 
-export const NavContactHeading = styled.p`
+export const NavContentHeading = styled.p`
   font-family: 'Roboto';
   font-size: 14px;
   color: ${props => (props.isDarkTheme ? '#ffffff' : '#000000')};
 `
 
-export const NavContactImageContainer = styled.div`
+export const NavContentImageContainer = styled.div`
   display: flex;
 `
 
-export const NavContactImage = styled.img`
+export const NavContentImage = styled.img`
   width: 40px;
   height: 40px;
   margin-right: 20px;
 `
 
-export const NavContactDescription = styled.p`
+export const NavContentDescription = styled.p`
   font-family: 'Roboto';
   font-size: 14px;
   color: ${props => (props.isDarkTheme ? '#ffffff' : '#000000')};

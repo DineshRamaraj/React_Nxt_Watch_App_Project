@@ -4,7 +4,11 @@ import Cookies from 'js-cookie'
 import Header from '../Header'
 import NavigationSideBar from '../NavigationSideBar'
 
-import {MainContainer} from './styledComponents'
+import {
+  MainContainer,
+  NavigationContainer,
+  RouteContainer,
+} from './styledComponents'
 
 const ProtectedRoute = props => {
   const jwtToken = Cookies.get('jwt_token')
@@ -16,8 +20,12 @@ const ProtectedRoute = props => {
     <>
       <Header />
       <MainContainer>
-        <NavigationSideBar />
-        <Route {...props} />
+        <NavigationContainer>
+          <NavigationSideBar />
+        </NavigationContainer>
+        <RouteContainer>
+          <Route {...props} />
+        </RouteContainer>
       </MainContainer>
     </>
   )

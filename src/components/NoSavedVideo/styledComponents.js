@@ -28,13 +28,13 @@ export const NoSavedImage = styled.img`
   }
 `
 
-export const NoSavedHeading = styled.h1`
+export const NoSavedHeading = styled.p`
   text-align: center;
   font-family: 'Roboto';
-  font-size: 18px;
+  font-size: 16px;
   color: ${props => (props.isDarkTheme ? '#F8FBFC' : '#1c293a')};
   @media screen and (min-width: 576px) {
-    font-size: 28px;
+    font-size: 18px;
   }
 `
 

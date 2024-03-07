@@ -30,6 +30,7 @@ const VideoItem = props => (
         viewCount,
       } = videoDetails
       const {name, profileImageUrl} = channel
+
       const formatTime = formatDistanceToNow(new Date(publishedAt))
         .split(' ')
         .slice(1, 3)

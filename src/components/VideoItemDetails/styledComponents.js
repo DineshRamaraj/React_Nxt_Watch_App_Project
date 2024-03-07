@@ -98,7 +98,12 @@ export const VideoButtonText = styled.span`
   font-size: 14px;
   font-weight: 600;
   margin-left: 8px;
-  color: ${props => (props.isLiked ? '#2563eb' : '#64748b')};
+  color: ${props => {
+    if (props.isSaved || props.isLiked || props.isDisLiked) {
+      return '#2563eb'
+    }
+    return '#64748b'
+  }};
 `
 
 export const HrLine = styled.hr`

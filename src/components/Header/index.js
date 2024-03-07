@@ -4,7 +4,6 @@ import Cookies from 'js-cookie'
 import {BsMoon} from 'react-icons/bs'
 import {FiMenu, FiLogOut, FiSun} from 'react-icons/fi'
 import {IoClose} from 'react-icons/io5'
-
 import NavigationSideBar from '../NavigationSideBar'
 import ContextComponent from '../../Context'
 
@@ -12,11 +11,14 @@ import {
   HeaderContainer,
   LogoLink,
   WebsiteLogo,
+  NavbarItem,
   SmNavbarContainer,
   MdNavbarContainer,
   DarkModeButton,
   HamburgerMenuButton,
   MenuPopupContainer,
+  SmMenuCloseButton,
+  SmMenuContainer,
   LogoutButton,
   MdProfileImage,
   MdLogoutButton,
@@ -60,103 +62,126 @@ const Header = props => (
             />
           </LogoLink>
           <SmNavbarContainer>
-            <DarkModeButton
-              type="button"
-              onClick={onClickToggleDarkMode}
-              data-testid="theme"
-              isDarkTheme={isDarkTheme}
-            >
-              {isDarkTheme ? <FiSun size={25} /> : <BsMoon size={25} />}
-            </DarkModeButton>
-
-            <Popup
-              modal
-              trigger={
-                <HamburgerMenuButton
-                  type="button"
-                  onClick={onClickMenuButton}
-                  isDarkTheme={isDarkTheme}
-                >
-                  <FiMenu size={25} />
-                </HamburgerMenuButton>
-              }
-              className="popup-content"
-            >
-              {close => (
-                <MenuPopupContainer>
-                  <IoClose onClick={() => close()} />
-                  <NavigationSideBar />
-                </MenuPopupContainer>
-              )}
-            </Popup>
-            <LogoutContainer>
+            <NavbarItem>
+              <DarkModeButton
+                type="button"
+                onClick={onClickToggleDarkMode}
+                data-testid="theme"
+                isDarkTheme={isDarkTheme}
+              >
+                {isDarkTheme ? <FiSun size={25} /> : <BsMoon size={25} />}
+              </DarkModeButton>
+            </NavbarItem>
+            <NavbarItem>
               <Popup
                 modal
                 trigger={
-                  <LogoutButton type="button" isDarkTheme={isDarkTheme}>
-                    <FiLogOut size={25} />
-                  </LogoutButton>
+                  <HamburgerMenuButton
+                    type="button"
+                    onClick={onClickMenuButton}
+                    isDarkTheme={isDarkTheme}
+                  >
+                    <FiMenu size={25} />
+                  </HamburgerMenuButton>
                 }
                 className="popup-content"
               >
                 {close => (
-                  <PopupContainer>
-                    <PopupHeading>
-                      Are you sure, you want to logout?
-                    </PopupHeading>
-                    <PopupButtonContainer>
-                      <PopupCancel type="button" onClick={() => close()}>
-                        Cancel
-                      </PopupCancel>
-                      <PopupConfirm type="button" onClick={logoutButton}>
-                        Confirm
-                      </PopupConfirm>
-                    </PopupButtonContainer>
-                  </PopupContainer>
+                  <MenuPopupContainer isDarkTheme={isDarkTheme}>
+                    <SmMenuCloseButton>
+                      <IoClose size={25} onClick={() => close()} />
+                    </SmMenuCloseButton>
+                    <SmMenuContainer>
+                      <NavigationSideBar />
+                    </SmMenuContainer>
+                  </MenuPopupContainer>
                 )}
               </Popup>
-            </LogoutContainer>
+            </NavbarItem>
+            <NavbarItem>
+              <LogoutContainer>
+                <Popup
+                  modal
+                  trigger={
+                    <LogoutButton type="button" isDarkTheme={isDarkTheme}>
+                      <FiLogOut size={25} />
+                    </LogoutButton>
+                  }
+                  className="popup-content"
+                >
+                  {close => (
+                    <PopupContainer isDarkTheme={isDarkTheme}>
+                      <PopupHeading isDarkTheme={isDarkTheme}>
+                        Are you sure, you want to logout?
+                      </PopupHeading>
+                      <PopupButtonContainer>
+                        <PopupCancel
+                          type="button"
+                          onClick={() => close()}
+                          isDarkTheme={isDarkTheme}
+                        >
+                          Cancel
+                        </PopupCancel>
+                        <PopupConfirm type="button" onClick={logoutButton}>
+                          Confirm
+                        </PopupConfirm>
+                      </PopupButtonContainer>
+                    </PopupContainer>
+                  )}
+                </Popup>
+              </LogoutContainer>
+            </NavbarItem>
           </SmNavbarContainer>
           <MdNavbarContainer>
-            <DarkModeButton
-              type="button"
-              onClick={onClickToggleDarkMode}
-              data-testid="theme"
-              isDarkTheme={isDarkTheme}
-            >
-              {isDarkTheme ? <FiSun size={25} /> : <BsMoon size={25} />}
-            </DarkModeButton>
-            <MdProfileImage
-              src="https://assets.ccbp.in/frontend/react-js/nxt-watch-profile-img.png"
-              alt="profile"
-            />
-            <LogoutContainer>
-              <Popup
-                modal
-                trigger={
-                  <MdLogoutButton type="button" isDarkTheme={isDarkTheme}>
-                    Logout
-                  </MdLogoutButton>
-                }
-                className="popup-content"
+            <NavbarItem>
+              <DarkModeButton
+                type="button"
+                onClick={onClickToggleDarkMode}
+                data-testid="theme"
+                isDarkTheme={isDarkTheme}
               >
-                {close => (
-                  <PopupContainer>
-                    <PopupHeading>
-                      Are you sure you want to logout?
-                    </PopupHeading>
-                    <PopupButtonContainer>
-                      <PopupCancel type="button" onClick={() => close()}>
-                        Cancel
-                      </PopupCancel>
-                      <PopupConfirm type="button" onClick={logoutButton}>
-                        Confirm
-                      </PopupConfirm>
-                    </PopupButtonContainer>
-                  </PopupContainer>
-                )}
-              </Popup>
-            </LogoutContainer>
+                {isDarkTheme ? <FiSun size={25} /> : <BsMoon size={25} />}
+              </DarkModeButton>
+            </NavbarItem>
+            <NavbarItem>
+              <MdProfileImage
+                src="https://assets.ccbp.in/frontend/react-js/nxt-watch-profile-img.png"
+                alt="profile"
+              />
+            </NavbarItem>
+            <NavbarItem>
+              <LogoutContainer>
+                <Popup
+                  modal
+                  trigger={
+                    <MdLogoutButton type="button" isDarkTheme={isDarkTheme}>
+                      Logout
+                    </MdLogoutButton>
+                  }
+                  className="popup-content"
+                >
+                  {close => (
+                    <PopupContainer isDarkTheme={isDarkTheme}>
+                      <PopupHeading isDarkTheme={isDarkTheme}>
+                        Are you sure, you want to logout?
+                      </PopupHeading>
+                      <PopupButtonContainer>
+                        <PopupCancel
+                          type="button"
+                          onClick={() => close()}
+                          isDarkTheme={isDarkTheme}
+                        >
+                          Cancel
+                        </PopupCancel>
+                        <PopupConfirm type="button" onClick={logoutButton}>
+                          Confirm
+                        </PopupConfirm>
+                      </PopupButtonContainer>
+                    </PopupContainer>
+                  )}
+                </Popup>
+              </LogoutContainer>
+            </NavbarItem>
           </MdNavbarContainer>
         </HeaderContainer>
       )

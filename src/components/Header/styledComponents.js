@@ -23,10 +23,16 @@ export const WebsiteLogo = styled.img`
   cursor: pointer;
 `
 
-export const SmNavbarContainer = styled.div`
+export const NavbarItem = styled.li`
+  display: flex;
+`
+
+export const SmNavbarContainer = styled.ul`
   display: flex;
   flex-direction: row;
   align-items: center;
+  padding-left: 0px;
+  list-style-type: none;
   @media screen and (min-width: 768px) {
     display: none;
   }
@@ -48,8 +54,24 @@ export const HamburgerMenuButton = styled.button`
 `
 
 export const MenuPopupContainer = styled.div`
-  width: 300px;
+  padding: 20px 0px;
+  width: 100vw;
   min-height: 100vh;
+  background-color: ${props => (props.isDarkTheme ? '#212121' : '#ffffff')};
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
+`
+
+export const SmMenuCloseButton = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  cursor: pointer;
+  margin-right: 30px;
+`
+
+export const SmMenuContainer = styled.div`
+  display: flex;
 `
 
 export const LogoutButton = styled.button`
@@ -60,12 +82,14 @@ export const LogoutButton = styled.button`
   margin-left: 15px;
 `
 
-export const MdNavbarContainer = styled.div`
+export const MdNavbarContainer = styled.ul`
   display: none;
   @media screen and (min-width: 768px) {
     display: block;
     display: flex;
     align-items: center;
+    padding-left: 0px;
+    list-style-type: none;
   }
 `
 export const MdProfileImage = styled.img`
@@ -107,7 +131,7 @@ export const PopupContainer = styled.div`
   align-items: center;
 `
 
-export const PopupHeading = styled.h1`
+export const PopupHeading = styled.p`
   color: ${props => (props.isDarkTheme ? '#ffffff' : '#475569')};
   font-family: 'Roboto';
   font-size: 16px;
@@ -127,8 +151,9 @@ export const PopupCancel = styled.button`
   font-size: 14px;
   padding: 8px 20px;
   border-radius: 4px;
-  border: 1px solid #616e7c;
-  color: #616e7c;
+  border: 1px solid ${props => (props.isDarkTheme ? '#f0f0f0' : '#616e7c')};
+  color: ${props => (props.isDarkTheme ? '#f0f0f0' : '#616e7c')};
+  background-color: transparent;
   border-radius: 5px;
   cursor: pointer;
 `
