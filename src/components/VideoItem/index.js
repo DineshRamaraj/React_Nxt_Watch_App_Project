@@ -3,7 +3,6 @@ import ContextComponent from '../../Context'
 import {
   VideoLink,
   VideoItemContainer,
-  //   VideoImageContainer,
   VideoImage,
   ProfileAndContentContainer,
   ProfileImage,
@@ -30,16 +29,16 @@ const VideoItem = props => (
         viewCount,
       } = videoDetails
       const {name, profileImageUrl} = channel
+
       const formatTime = formatDistanceToNow(new Date(publishedAt))
         .split(' ')
         .slice(1, 3)
         .join(' ')
+
       return (
         <VideoItemContainer isDarkTheme={isDarkTheme}>
           <VideoLink to={`/videos/${id}`}>
-            {/* <VideoImageContainer> */}
             <VideoImage src={thumbnailUrl} alt="video thumbnail" />
-            {/* </VideoImageContainer> */}
             <ProfileAndContentContainer>
               <ProfileImage src={profileImageUrl} alt="channel logo" />
               <VideoContentContainer>

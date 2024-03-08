@@ -33,7 +33,12 @@ import {
 const Header = props => (
   <ContextComponent.Consumer>
     {value => {
-      const {isDarkTheme, toggleDarkMode, hamburgerMenu} = value
+      const {
+        isDarkTheme,
+        toggleDarkMode,
+        hamburgerMenu,
+        changeActiveTabId,
+      } = value
 
       const onClickToggleDarkMode = () => {
         toggleDarkMode()
@@ -41,6 +46,10 @@ const Header = props => (
 
       const onClickMenuButton = () => {
         hamburgerMenu()
+      }
+
+      const onClickHome = () => {
+        changeActiveTabId('home')
       }
 
       const logoutButton = () => {
@@ -51,7 +60,7 @@ const Header = props => (
 
       return (
         <HeaderContainer isDarkTheme={isDarkTheme}>
-          <LogoLink to="/">
+          <LogoLink to="/" onClick={onClickHome}>
             <WebsiteLogo
               src={
                 isDarkTheme
@@ -92,7 +101,7 @@ const Header = props => (
                       <IoClose size={25} onClick={() => close()} />
                     </SmMenuCloseButton>
                     <SmMenuContainer>
-                      <NavigationSideBar />
+                      <NavigationSideBar close={close} />
                     </SmMenuContainer>
                   </MenuPopupContainer>
                 )}

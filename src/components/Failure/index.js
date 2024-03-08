@@ -10,7 +10,7 @@ import {
 const Failure = props => {
   const {retryButton} = props
 
-  const onClickRetry = () => {
+  const onRetryButton = () => {
     console.log('Hello')
     retryButton()
   }
@@ -37,7 +37,7 @@ const Failure = props => {
               We are having some trouble to complete your request. Please try
               again.
             </FailureDescription>
-            <FailureRetryButton type="button" onClick={onClickRetry}>
+            <FailureRetryButton type="button" onClick={onRetryButton}>
               Retry
             </FailureRetryButton>
           </FailureContainer>

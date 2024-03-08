@@ -91,16 +91,19 @@ class Home extends Component {
       {value => {
         const {videoList} = this.state
         const {isDarkTheme} = value
-        if (videoList.length) {
-          return (
-            <VideoListContainer isDarkTheme={isDarkTheme}>
-              {videoList.map(eachItem => (
-                <VideoItem key={eachItem.id} videoDetails={eachItem} />
-              ))}
-            </VideoListContainer>
-          )
-        }
-        return <NoSearchResult />
+        return (
+          <>
+            {videoList.length ? (
+              <VideoListContainer isDarkTheme={isDarkTheme}>
+                {videoList.map(eachItem => (
+                  <VideoItem key={eachItem.id} videoDetails={eachItem} />
+                ))}
+              </VideoListContainer>
+            ) : (
+              <NoSearchResult noSearchResult={this.retryButton} />
+            )}
+          </>
+        )
       }}
     </ContextComponent.Consumer>
   )

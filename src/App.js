@@ -30,7 +30,7 @@ class App extends Component {
     } else if (pathname === '/saved-videos') {
       this.setState({activeTabId: 'saved'})
     } else {
-      this.setState({activeTabId: 'home'})
+      this.setState({activeTabId: ''})
     }
   }
 
@@ -84,7 +84,7 @@ class App extends Component {
           <ProtectedRoute exact path="/gaming" component={Gaming} />
           <ProtectedRoute exact path="/saved-videos" component={SavedVideos} />
           <ProtectedRoute path="/videos/:id" component={VideoItemDetails} />
-          <ProtectedRoute exact path="/bad-path" component={NotFound} />
+          <Route exact path="/bad-path" component={NotFound} />
           <Redirect to="/bad-path" />
         </Switch>
       </ContextComponents.Provider>

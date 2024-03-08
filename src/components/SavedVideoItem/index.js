@@ -1,8 +1,9 @@
 import {formatDistanceToNow} from 'date-fns'
 import ContextComponent from '../../Context'
 import {
-  VideoItemContainer,
   VideoLink,
+  VideoItemContainer,
+  VideoImageContainer,
   VideoImage,
   ProfileAndContentContainer,
   ProfileImage,
@@ -35,28 +36,30 @@ const VideoItem = props => (
         .slice(1, 3)
         .join(' ')
       return (
-        <VideoItemContainer isDarkTheme={isDarkTheme}>
-          <VideoLink to={`/videos/${id}`}>
-            <VideoImage src={thumbnailUrl} alt="video thumbnail" />
-          </VideoLink>
-          <ProfileAndContentContainer>
-            <ProfileImage src={profileImageUrl} alt="channel logo" />
-            <VideoContentContainer>
-              <VideoTitle isDarkTheme={isDarkTheme}>{title}</VideoTitle>
-              <ChannelAndViewAndDuration>
-                <VideoChannel isDarkTheme={isDarkTheme}>{name}</VideoChannel>
-                <VideoViewsAndDuration>
-                  <VideoView isDarkTheme={isDarkTheme}>
-                    {viewCount} views
-                  </VideoView>
-                  <VideoDuration isDarkTheme={isDarkTheme}>
-                    {formatTime} ago
-                  </VideoDuration>
-                </VideoViewsAndDuration>
-              </ChannelAndViewAndDuration>
-            </VideoContentContainer>
-          </ProfileAndContentContainer>
-        </VideoItemContainer>
+        <VideoLink to={`/videos/${id}`}>
+          <VideoItemContainer isDarkTheme={isDarkTheme}>
+            <VideoImageContainer>
+              <VideoImage src={thumbnailUrl} alt="video thumbnail" />
+            </VideoImageContainer>
+            <ProfileAndContentContainer>
+              <ProfileImage src={profileImageUrl} alt="channel logo" />
+              <VideoContentContainer>
+                <VideoTitle isDarkTheme={isDarkTheme}>{title}</VideoTitle>
+                <ChannelAndViewAndDuration>
+                  <VideoChannel isDarkTheme={isDarkTheme}>{name}</VideoChannel>
+                  <VideoViewsAndDuration>
+                    <VideoView isDarkTheme={isDarkTheme}>
+                      {viewCount} views
+                    </VideoView>
+                    <VideoDuration isDarkTheme={isDarkTheme}>
+                      {formatTime} ago
+                    </VideoDuration>
+                  </VideoViewsAndDuration>
+                </ChannelAndViewAndDuration>
+              </VideoContentContainer>
+            </ProfileAndContentContainer>
+          </VideoItemContainer>
+        </VideoLink>
       )
     }}
   </ContextComponent.Consumer>

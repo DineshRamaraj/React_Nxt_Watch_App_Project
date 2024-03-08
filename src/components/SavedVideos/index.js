@@ -5,7 +5,6 @@ import NoSavedVideo from '../NoSavedVideo'
 
 import {
   MainSavedVideoContainer,
-  SavedVideosContainer,
   BannerContainer,
   BannerIconContainer,
   BannerHeading,
@@ -36,30 +35,21 @@ const SavedVideos = () => (
     <ContextComponent.Consumer>
       {value => {
         const {isDarkTheme, savedVideosList} = value
-        if (savedVideosList.length > 0) {
-          return (
-            <MainSavedVideoContainer
-              isDarkTheme={isDarkTheme}
-              data-testid="savedVideos"
-            >
-              {renderBanner()}
-              <SavedVideosContainer isDarkTheme={isDarkTheme}>
-                <VideoListContainer isDarkTheme={isDarkTheme}>
-                  {savedVideosList.map(eachItem => (
-                    <SavedVideoItem key={eachItem.id} videoDetails={eachItem} />
-                  ))}
-                </VideoListContainer>
-              </SavedVideosContainer>
-            </MainSavedVideoContainer>
-          )
-        }
         return (
           <MainSavedVideoContainer
             isDarkTheme={isDarkTheme}
             data-testid="savedVideos"
           >
             {renderBanner()}
-            <NoSavedVideo />
+            {savedVideosList.length ? (
+              <VideoListContainer isDarkTheme={isDarkTheme}>
+                {savedVideosList.map(eachItem => (
+                  <SavedVideoItem key={eachItem.id} videoDetails={eachItem} />
+                ))}
+              </VideoListContainer>
+            ) : (
+              <NoSavedVideo />
+            )}
           </MainSavedVideoContainer>
         )
       }}

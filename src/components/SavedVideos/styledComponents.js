@@ -3,28 +3,23 @@ import styled from 'styled-components'
 export const MainSavedVideoContainer = styled.div`
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
   background-color: ${props => (props.isDarkTheme ? '#0f0f0f' : '#f9f9f9')};
   width: 100%;
+  min-height: 70vh;
+  max-height: 90vh;
 `
 
-export const SavedVideosContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  background-color: ${props => (props.isDarkTheme ? '#0f0f0f' : '#f9f9f9')};
-  height: 70vh;
-  max-height: 100vh;
-  padding: 20px;
-  overflow-y: auto;
-`
 export const BannerContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  background-color: ${props => (props.isDarkTheme ? '#181818' : '#f1f1f1')};
-  padding: 20px;
-  padding-left: 30px;
-  border-radius: 10px;
+  display: none;
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: ${props => (props.isDarkTheme ? '#181818' : '#f1f1f1')};
+    padding: 20px;
+    padding-left: 30px;
+    border-radius: 10px;
+  }
 `
 
 export const BannerIconContainer = styled.div`
@@ -47,8 +42,9 @@ export const BannerHeading = styled.h1`
 export const VideoListContainer = styled.ul`
   display: flex;
   flex-direction: column;
-  min-height: 50vh;
   margin-top: 20px;
   padding-left: 0px;
   list-style: none;
+  padding: 20px;
+  overflow-y: auto;
 `

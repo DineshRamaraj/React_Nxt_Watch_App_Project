@@ -17,7 +17,7 @@ import {
   VideoView,
   VideoDuration,
   VideoLikeAndSaveContainer,
-  VideoLikeButton,
+  VideoButtons,
   VideoButtonText,
   HrLine,
   ChannelProfileAndName,
@@ -166,7 +166,12 @@ class VideoItemDetails extends Component {
           return (
             <>
               <VideoContainer>
-                <ReactPlayer url={videoUrl} width="100%" height="100%" />
+                <ReactPlayer
+                  url={videoUrl}
+                  width="100%"
+                  height="100%"
+                  key="video_url"
+                />
               </VideoContainer>
               <VideoContentContainer>
                 <VideoTitle isDarkTheme={isDarkTheme}>{title}</VideoTitle>
@@ -180,7 +185,7 @@ class VideoItemDetails extends Component {
                     </VideoDuration>
                   </VideoViewsAndDuration>
                   <VideoLikeAndSaveContainer>
-                    <VideoLikeButton
+                    <VideoButtons
                       type="button"
                       onClick={this.onClickLikeButton}
                     >
@@ -194,9 +199,9 @@ class VideoItemDetails extends Component {
                       >
                         Like
                       </VideoButtonText>
-                    </VideoLikeButton>
+                    </VideoButtons>
 
-                    <VideoLikeButton
+                    <VideoButtons
                       type="button"
                       onClick={this.onClickDisLikeButton}
                     >
@@ -210,8 +215,8 @@ class VideoItemDetails extends Component {
                       >
                         Dislike
                       </VideoButtonText>
-                    </VideoLikeButton>
-                    <VideoLikeButton type="button" onClick={onClickSavedButton}>
+                    </VideoButtons>
+                    <VideoButtons type="button" onClick={onClickSavedButton}>
                       <MdPlaylistAdd size={20} color={saveIconColor} />
                       <VideoButtonText
                         isDarkTheme={isDarkTheme}
@@ -219,7 +224,7 @@ class VideoItemDetails extends Component {
                       >
                         {isSaved ? 'Saved' : 'Save'}
                       </VideoButtonText>
-                    </VideoLikeButton>
+                    </VideoButtons>
                   </VideoLikeAndSaveContainer>
                 </VideoViewAndLikeButtonContainer>
                 <HrLine isDarkTheme={isDarkTheme} />

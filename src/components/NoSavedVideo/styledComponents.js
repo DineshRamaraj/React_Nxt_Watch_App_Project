@@ -5,10 +5,10 @@ export const NoSavedVideoContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 70vh;
+  min-height: 60vh;
   background-color: ${props => (props.isDarkTheme ? '#181818' : '#f9f9f9')};
   @media screen and (min-width: 768px) {
-    min-height: 100vh;
+    min-height: 80vh;
   }
 `
 
@@ -28,13 +28,13 @@ export const NoSavedImage = styled.img`
   }
 `
 
-export const NoSavedHeading = styled.p`
+export const NoSavedHeading = styled.h1`
   text-align: center;
   font-family: 'Roboto';
-  font-size: 16px;
+  font-size: 24px;
   color: ${props => (props.isDarkTheme ? '#F8FBFC' : '#1c293a')};
   @media screen and (min-width: 576px) {
-    font-size: 18px;
+    font-size: 28px;
   }
 `
 

@@ -83,7 +83,7 @@ export const VideoLikeAndSaveContainer = styled.div`
   align-items: center;
 `
 
-export const VideoLikeButton = styled.div`
+export const VideoButtons = styled.button`
   background-color: 'transparent';
   display: flex;
   flex-direction: row;

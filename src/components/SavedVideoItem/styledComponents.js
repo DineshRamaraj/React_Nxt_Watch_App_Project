@@ -22,6 +22,9 @@ export const VideoItemContainer = styled.li`
 export const VideoLink = styled(Link)`
   text-decoration: none;
   cursor: pointer;
+`
+
+export const VideoImageContainer = styled.div`
   width: 100%;
   @media screen and (min-width: 576px) {
     width: 55%;
@@ -75,7 +78,7 @@ export const VideoContentContainer = styled.div`
   }
 `
 
-export const VideoTitle = styled.h1`
+export const VideoTitle = styled.p`
   font-family: 'Roboto';
   font-size: 14px;
   font-weight: 600;
