@@ -1,7 +1,7 @@
 import ReactPlayer from 'react-player'
 import {BiLike, BiDislike} from 'react-icons/bi'
 import {MdPlaylistAdd} from 'react-icons/md'
-import {formatDistanceToNow} from 'date-fns'
+// import {formatDistanceToNow} from 'date-fns'
 import Cookies from 'js-cookie'
 import {Component} from 'react'
 import ContextComponent from '../../Context'
@@ -134,10 +134,10 @@ class VideoItemDetails extends Component {
     } = videoDetailsData
     const {name, profileImageUrl, subscriberCount} = channel
 
-    const formatTime = formatDistanceToNow(new Date(publishedAt))
-      .split(' ')
-      .slice(1, 3)
-      .join(' ')
+    // const formatTime = formatDistanceToNow(new Date(publishedAt))
+    //   .split(' ')
+    //   .slice(1, 3)
+    //   .join(' ')
 
     return (
       <ContextComponent.Consumer>
@@ -181,7 +181,7 @@ class VideoItemDetails extends Component {
                       {viewCount} views
                     </VideoView>
                     <VideoDuration isDarkTheme={isDarkTheme}>
-                      {formatTime} ago
+                      {publishedAt}
                     </VideoDuration>
                   </VideoViewsAndDuration>
                   <VideoLikeAndSaveContainer>

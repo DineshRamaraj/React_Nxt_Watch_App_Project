@@ -27,22 +27,22 @@ const NavigationSideBar = props => {
 
         const onClickHome = () => {
           changeActiveTabId('home')
-          close()
+          // close()
         }
 
         const onClickTrending = () => {
           changeActiveTabId('trending')
-          close()
+          // close()
         }
 
         const onClickGaming = () => {
           changeActiveTabId('gaming')
-          close()
+          // close()
         }
 
         const onClickSaved = () => {
           changeActiveTabId('saved')
-          close()
+          // close()
         }
 
         return (

@@ -138,14 +138,14 @@ export const VideoView = styled.p`
 
 export const VideoDuration = styled.p`
   font-family: 'Roboto';
-  font-size: 12px;
-  font-weight: ${props => (props.isDarkTheme ? '500' : '400')};
+  //   font-size: 12px;
+  //   font-weight: ${props => (props.isDarkTheme ? '500' : '400')};
   color: #3a6789;
   margin-left: 10px;
   margin-top: 5px;
   list-style: disc inside;
   display: list-item;
-  @media screen and (min-width: 576px) {
-    font-size: 14px;
-  }
+  //   @media screen and (min-width: 576px) {
+  //     font-size: 14px;
+  //   }
 `

@@ -57,6 +57,7 @@ class Gaming extends Component {
         this.convertResponseDataIntoMyData(eachItem),
       )
       //   console.log(updatedData)
+
       this.setState({
         gamingList: updatedData,
         apiStatus: apiStatusConstants.success,
@@ -71,7 +72,7 @@ class Gaming extends Component {
       {value => {
         const {isDarkTheme} = value
         return (
-          <BannerContainer isDarkTheme={isDarkTheme}>
+          <BannerContainer isDarkTheme={isDarkTheme} data-testid="banner">
             <BannerIconContainer isDarkTheme={isDarkTheme}>
               <SiYoutubegaming
                 size={30}

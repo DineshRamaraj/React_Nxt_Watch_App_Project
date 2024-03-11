@@ -24,6 +24,8 @@ const apiStatusConstants = {
   inProgress: 'IN_PROGRESS',
 }
 
+// let isFailure = apiStatusConstants.failure
+
 class Home extends Component {
   state = {
     videoList: [],
@@ -81,6 +83,7 @@ class Home extends Component {
   renderLoadingView = () => <LoadingView />
 
   retryButton = () => {
+    // isFailure = apiStatusConstants.success
     this.setState({searchInput: ''}, this.getVideoListData)
   }
 

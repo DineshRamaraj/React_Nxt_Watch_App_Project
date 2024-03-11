@@ -121,7 +121,7 @@ const Header = props => (
                   {close => (
                     <PopupContainer isDarkTheme={isDarkTheme}>
                       <PopupHeading isDarkTheme={isDarkTheme}>
-                        Are you sure, you want to logout?
+                        Are you sure, you want to logout
                       </PopupHeading>
                       <PopupButtonContainer>
                         <PopupCancel
@@ -172,13 +172,14 @@ const Header = props => (
                   {close => (
                     <PopupContainer isDarkTheme={isDarkTheme}>
                       <PopupHeading isDarkTheme={isDarkTheme}>
-                        Are you sure, you want to logout?
+                        Are you sure, you want to logout
                       </PopupHeading>
                       <PopupButtonContainer>
                         <PopupCancel
                           type="button"
                           onClick={() => close()}
                           isDarkTheme={isDarkTheme}
+                          data-testid="close"
                         >
                           Cancel
                         </PopupCancel>

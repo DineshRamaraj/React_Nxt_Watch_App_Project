@@ -16,7 +16,7 @@ const renderBanner = () => (
     {value => {
       const {isDarkTheme} = value
       return (
-        <BannerContainer isDarkTheme={isDarkTheme}>
+        <BannerContainer isDarkTheme={isDarkTheme} data-testid="banner">
           <BannerIconContainer isDarkTheme={isDarkTheme}>
             <MdPlaylistAdd
               size={30}
@@ -40,13 +40,15 @@ const SavedVideos = () => (
             isDarkTheme={isDarkTheme}
             data-testid="savedVideos"
           >
-            {renderBanner()}
             {savedVideosList.length ? (
-              <VideoListContainer isDarkTheme={isDarkTheme}>
-                {savedVideosList.map(eachItem => (
-                  <SavedVideoItem key={eachItem.id} videoDetails={eachItem} />
-                ))}
-              </VideoListContainer>
+              <>
+                {renderBanner()}
+                <VideoListContainer isDarkTheme={isDarkTheme}>
+                  {savedVideosList.map(eachItem => (
+                    <SavedVideoItem key={eachItem.id} videoDetails={eachItem} />
+                  ))}
+                </VideoListContainer>
+              </>
             ) : (
               <NoSavedVideo />
             )}

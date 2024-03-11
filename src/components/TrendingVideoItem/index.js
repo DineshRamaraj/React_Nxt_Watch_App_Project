@@ -1,4 +1,4 @@
-import {formatDistanceToNow} from 'date-fns'
+// import {formatDistanceToNow} from 'date-fns'
 import ContextComponent from '../../Context'
 import {
   VideoLink,
@@ -31,10 +31,10 @@ const VideoItem = props => (
       } = videoDetails
       const {name, profileImageUrl} = channel
 
-      const formatTime = formatDistanceToNow(new Date(publishedAt))
+      /* const formatTime = formatDistanceToNow(new Date(publishedAt))
         .split(' ')
         .slice(1, 3)
-        .join(' ')
+        .join(' ') */
 
       return (
         <VideoLink to={`/videos/${id}`}>
@@ -53,7 +53,7 @@ const VideoItem = props => (
                       {viewCount} views
                     </VideoView>
                     <VideoDuration isDarkTheme={isDarkTheme}>
-                      {formatTime} ago
+                      {publishedAt}
                     </VideoDuration>
                   </VideoViewsAndDuration>
                 </ChannelAndViewAndDuration>

@@ -23,6 +23,8 @@ const apiStatusConstants = {
   inProgress: 'IN_PROGRESS',
 }
 
+// let isFailure = apiStatusConstants.failure
+
 class Trending extends Component {
   state = {
     trendingList: [],
@@ -76,7 +78,7 @@ class Trending extends Component {
       {value => {
         const {isDarkTheme} = value
         return (
-          <BannerContainer isDarkTheme={isDarkTheme}>
+          <BannerContainer isDarkTheme={isDarkTheme} data-testid="banner">
             <BannerIconContainer isDarkTheme={isDarkTheme}>
               <HiFire size={30} color={isDarkTheme ? '#FF021B' : '#ff031c'} />
             </BannerIconContainer>
@@ -90,6 +92,7 @@ class Trending extends Component {
   renderLoadingView = () => <LoadingView />
 
   retryButton = () => {
+    // isFailure = apiStatusConstants.success
     this.getTrendingList()
   }
 

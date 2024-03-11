@@ -11,7 +11,7 @@ const Failure = props => {
   const {retryButton} = props
 
   const onRetryButton = () => {
-    console.log('Hello')
+    // console.log('Hello')
     retryButton()
   }
 
