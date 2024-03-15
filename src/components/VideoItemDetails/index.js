@@ -90,11 +90,11 @@ class VideoItemDetails extends Component {
     }
   }
 
-  retryButton = () => {
+  onRetry = () => {
     this.getDataFormServer()
   }
 
-  renderFailureView = () => <Failure retryButton={this.retryButton} />
+  renderFailureView = () => <Failure onRetry={this.onRetry} />
 
   renderLoadingView = () => <LoadingView />
 

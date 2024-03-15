@@ -41,10 +41,10 @@ export const NoSavedHeading = styled.h1`
 export const NoSavedDescription = styled.p`
   text-align: center;
   font-family: 'Roboto';
-  //   font-size: 14px;
+  font-size: 14px;
   color: ${props => (props.isDarkTheme ? '#91A1AD' : '#465568')};
   margin: 0px;
-  //   @media screen and (min-width: 576px) {
-  // font-size: 16px;
-  //   }
+  @media screen and (min-width: 576px) {
+    font-size: 16px;
+  }
 `

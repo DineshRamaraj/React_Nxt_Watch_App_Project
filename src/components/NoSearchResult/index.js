@@ -8,10 +8,10 @@ import {
 } from './styledComponents'
 
 const NoSearchResult = props => {
-  const {noSearchResult} = props
+  const {onRetry} = props
 
   const onClickRetrySearch = () => {
-    noSearchResult()
+    onRetry()
   }
 
   return (

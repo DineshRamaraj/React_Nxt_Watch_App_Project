@@ -20,7 +20,7 @@ const NoSavedVideo = () => (
             No saved videos found
           </NoSavedHeading>
           <NoSavedDescription isDarkTheme={isDarkTheme}>
-            Save your videos by clicking a button
+            you can save your videos while watching them
           </NoSavedDescription>
         </NoSavedVideoContainer>
       )

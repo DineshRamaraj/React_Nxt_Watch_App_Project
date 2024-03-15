@@ -34,8 +34,8 @@ export const BannerIconContainer = styled.div`
 
 export const BannerHeading = styled.h1`
   font-family: 'Roboto';
-  font-size: 24px;
   padding-left: 20px;
+  font-size: 24px;
   color: ${props => (props.isDarkTheme ? '#F9FBFC' : '#1D293B')};
 `
 

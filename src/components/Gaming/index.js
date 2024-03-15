@@ -88,11 +88,11 @@ class Gaming extends Component {
 
   renderLoadingView = () => <LoadingView />
 
-  retryButton = () => {
+  onRetry = () => {
     this.getGamingList()
   }
 
-  renderFailureView = () => <Failure retryButton={this.retryButton} />
+  renderFailureView = () => <Failure onRetry={this.onRetry} />
 
   renderSuccessView = () => (
     <ContextComponent.Consumer>

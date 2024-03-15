@@ -36,23 +36,29 @@ const SavedVideos = () => (
       {value => {
         const {isDarkTheme, savedVideosList} = value
         return (
-          <MainSavedVideoContainer
-            isDarkTheme={isDarkTheme}
-            data-testid="savedVideos"
-          >
+          <>
             {savedVideosList.length ? (
-              <>
+              <MainSavedVideoContainer
+                isDarkTheme={isDarkTheme}
+                data-testid="savedVideos"
+              >
                 {renderBanner()}
                 <VideoListContainer isDarkTheme={isDarkTheme}>
                   {savedVideosList.map(eachItem => (
                     <SavedVideoItem key={eachItem.id} videoDetails={eachItem} />
                   ))}
                 </VideoListContainer>
-              </>
+              </MainSavedVideoContainer>
             ) : (
-              <NoSavedVideo />
+              <MainSavedVideoContainer
+                isDarkTheme={isDarkTheme}
+                data-testid="savedVideos"
+              >
+                {renderBanner()}
+                <NoSavedVideo />
+              </MainSavedVideoContainer>
             )}
-          </MainSavedVideoContainer>
+          </>
         )
       }}
     </ContextComponent.Consumer>

@@ -91,12 +91,11 @@ class Trending extends Component {
 
   renderLoadingView = () => <LoadingView />
 
-  retryButton = () => {
-    // isFailure = apiStatusConstants.success
+  onRetry = () => {
     this.getTrendingList()
   }
 
-  renderFailureView = () => <Failure retryButton={this.retryButton} />
+  renderFailureView = () => <Failure onRetry={this.onRetry} />
 
   renderSuccessView = () => (
     <ContextComponent.Consumer>

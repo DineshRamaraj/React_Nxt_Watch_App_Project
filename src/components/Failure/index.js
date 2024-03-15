@@ -8,34 +8,29 @@ import {
 } from './styledComponents'
 
 const Failure = props => {
-  const {retryButton} = props
+  const {onRetry} = props
 
   const onRetryButton = () => {
-    // console.log('Hello')
-    retryButton()
+    onRetry()
   }
 
   return (
     <ContextComponent.Consumer>
       {value => {
         const {isDarkTheme} = value
+        const failureImage = isDarkTheme
+          ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png'
+          : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png'
 
         return (
           <FailureContainer>
-            <FailureImage
-              src={
-                isDarkTheme
-                  ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png'
-                  : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png'
-              }
-              alt="failure view"
-            />
+            <FailureImage src={failureImage} alt="failure view" />
             <FailureHeading isDarkTheme={isDarkTheme}>
               Oops! Something Went Wrong
             </FailureHeading>
             <FailureDescription isDarkTheme={isDarkTheme}>
-              We are having some trouble to complete your request. Please try
-              again.
+              We are having some trouble to complete your request.
+              <br /> Please try again.
             </FailureDescription>
             <FailureRetryButton type="button" onClick={onRetryButton}>
               Retry
