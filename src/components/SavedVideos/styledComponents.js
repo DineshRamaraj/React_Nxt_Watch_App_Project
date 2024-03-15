@@ -36,7 +36,7 @@ export const BannerHeading = styled.h1`
   font-family: 'Roboto';
   padding-left: 20px;
   font-size: 24px;
-  color: ${props => (props.isDarkTheme ? '#F9FBFC' : '#1D293B')};
+  color: ${props => (props.isDarkTheme ? '#f9f9f9' : '#231f20')};
 `
 
 export const VideoListContainer = styled.ul`
