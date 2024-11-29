@@ -37,7 +37,7 @@ const SavedVideos = () => (
         const {isDarkTheme, savedVideosList} = value
         return (
           <>
-            {savedVideosList.length ? (
+            {savedVideosList.length !== 0 ? (
               <MainSavedVideoContainer
                 isDarkTheme={isDarkTheme}
                 data-testid="savedVideos"
@@ -54,7 +54,7 @@ const SavedVideos = () => (
                 isDarkTheme={isDarkTheme}
                 data-testid="savedVideos"
               >
-                {renderBanner()}
+                {savedVideosList.length > 0 && renderBanner()}
                 <NoSavedVideo />
               </MainSavedVideoContainer>
             )}

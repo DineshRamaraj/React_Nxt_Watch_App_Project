@@ -10,16 +10,13 @@ export const MainSavedVideoContainer = styled.div`
 `
 
 export const BannerContainer = styled.div`
-  display: none;
-  @media screen and (min-width: 768px) {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    background-color: ${props => (props.isDarkTheme ? '#181818' : '#f1f1f1')};
-    padding: 20px;
-    padding-left: 30px;
-    border-radius: 10px;
-  }
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: ${props => (props.isDarkTheme ? '#181818' : '#f1f1f1')};
+  padding: 20px;
+  padding-left: 30px;
+  border-radius: 10px;
 `
 
 export const BannerIconContainer = styled.div`
